@@ -1,0 +1,7 @@
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - apps/web/application.rb
