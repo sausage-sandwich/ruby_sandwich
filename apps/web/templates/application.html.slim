@@ -1,0 +1,23 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    meta content="" name="description"
+    meta content="" name="author"
+    = stylesheet 'application'
+    title Hello Sandwich!
+
+  body
+    .container
+      header.header
+        nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-4 role="navigation"
+          .container
+            .collapse.navbar-collapse
+              .navbar-nav
+                = link_to "Sausage Sandwich", Web.routes.path(:recipes), class: 'navbar-brand'
+                = link_to "New Recipe", Web.routes.path(:new_recipe), class: 'btn btn-dark'
+
+      main role="main"
+        = yield
