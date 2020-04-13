@@ -6,7 +6,13 @@ module Web
       class Index
         include Web::Action
 
-        def call(params); end
+        expose :recipes
+
+        def call(_params)
+          repo = RecipeRepository.new
+
+          @recipes = repo.all
+        end
       end
     end
   end
