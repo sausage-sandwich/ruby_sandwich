@@ -1,6 +1,6 @@
 RSpec.describe Web::Views::Recipes::Index, type: :view do
   let(:exposures) { Hash[format: :html] }
-  let(:template)  { Hanami::View::Template.new('apps/web/templates/recipes/index.html.erb') }
+  let(:template)  { Hanami::View::Template.new('apps/web/templates/recipes/index.html.slim') }
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 
