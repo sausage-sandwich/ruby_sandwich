@@ -1,0 +1,8 @@
+.row
+  - recipes.each do |recipe|
+    .col-md-4
+      .card.mb-2
+        = image('recipe_placeholder.png', class: 'card-img-top')
+        .card-body
+          h5.card-title
+            = link_to recipe.title, Web.routes.path(:recipe, id: recipe.id)
