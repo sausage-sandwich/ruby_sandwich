@@ -13,3 +13,7 @@ Layout/LineLength:
   URISchemes:
   - http
   - https
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
