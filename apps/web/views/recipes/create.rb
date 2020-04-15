@@ -5,7 +5,12 @@ module Web
     module Recipes
       class Create
         include Web::View
-        template 'recipes/show'
+        template 'recipes/new'
+
+        # FIXME remove duplication in Views::Recipes::New
+        def units
+          { kg: :kg, g: :g }
+        end
       end
     end
   end

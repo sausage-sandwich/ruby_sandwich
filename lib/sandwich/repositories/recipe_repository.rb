@@ -10,6 +10,10 @@ class RecipeRepository < Hanami::Repository
     aggregate(recipe_ingredients: :ingredient).where(id: id).map_to(Recipe).one
   end
 
+  def all_with_ingredients
+    aggregate(recipe_ingredients: :ingredient).map_to(Recipe)
+  end
+
   def create_with_recipe_ingredients(attrs)
     assoc(:recipe_ingredients).create(attrs)
   end
