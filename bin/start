@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -euo pipefail
+set -vx
+
+bundle exec hanami db migrate
+bundle exec hanami assets precompile
+bundle exec hanami server -p 80
