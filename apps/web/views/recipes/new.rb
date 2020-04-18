@@ -7,7 +7,9 @@ module Web
         include Web::View
 
         def units
-          { kg: :kg, g: :g }
+          Units::UNITS.each_with_object({}) do |unit, memo|
+            memo[unit] = unit
+          end
         end
       end
     end

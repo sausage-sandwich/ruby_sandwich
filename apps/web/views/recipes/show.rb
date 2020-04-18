@@ -5,6 +5,11 @@ module Web
     module Recipes
       class Show
         include Web::View
+
+        def display_quantity(quantity, unit)
+          unit = Unit.new(quantity, unit)
+          unit.convert_to_metric.humanize
+        end
       end
     end
   end
