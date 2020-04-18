@@ -18,4 +18,4 @@
             = display_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
   .col-md-6
     h5 Instructions
-    pre = h(recipe.body)
+    = text_with_newlines(recipe.body)

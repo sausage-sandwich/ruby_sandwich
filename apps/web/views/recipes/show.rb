@@ -10,6 +10,12 @@ module Web
           unit = Unit.new(quantity, unit)
           unit.convert_to_metric.humanize
         end
+
+        # NOTE: find build-in function for this
+        def text_with_newlines(text)
+          safe = h(text)
+          raw(safe.split("\n").join('<br/>'))
+        end
       end
     end
   end
