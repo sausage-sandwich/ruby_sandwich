@@ -15,7 +15,7 @@
           td.text-right.text-capitalize
             = recipe_ingredient.ingredient.title
           td
-            = [recipe_ingredient.unit, recipe_ingredient.quantity].join(' ')
+            = display_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
   .col-md-6
     h5 Instructions
     = ha(recipe.body)
