@@ -8,7 +8,7 @@ module Web
       class New
         include Web::Action
 
-        expose :recipe
+        expose :recipe, :errors
 
         def call(_params)
           @recipe = Recipe.new(recipe_ingredients: [RecipeIngredient.new])

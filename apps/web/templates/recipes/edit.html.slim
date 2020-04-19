@@ -6,18 +6,18 @@
 
 .row
   .col-md-8.offset-md-2
-    = form_for :recipe, routes.recipes_path, values: { recipe: recipe } do
+    = form_for :recipe, routes.recipe_path(id: recipe.id), values: { recipe: recipe }, method: :patch do
       - label :title, class: 'control-label'
       - text_field :title, class: 'form-control'
 
       - label :ingredients, class: 'control-label'
 
-      - div class: 'js-repeatable form-inline' do
-        - fields_for_collection :recipe_ingredients
+      - div class: 'js-repeatable form-inline'
+        - fields_for_collection :recipe_ingredients do |i, recipe_ingredient|
           - div class: 'js-repeatable-block' do
-            - text_field :title, class: 'form-control mb-2 mr-2'
-            - number_field :quantity, class: 'form-control mb-2 mr-2', step: 'any'
-            - select :unit, units, class: 'form-control mb-2 mr-2'
+            - text_field :title, value: recipe_ingredient.ingredient.title, class: 'form-control mb-2 mr-2'
+            - number_field :quantity, value: recipe_ingredient.quantity.to_f, class: 'form-control mb-2 mr-2', step: 'any'
+            - select :unit, units, value: recipe_ingredient.unit, class: 'form-control mb-2 mr-2'
         - div 'Add', class: 'js-repeatable-block-add-button btn btn-warning mb-2 mr-2'
 
       - div class: 'form-group' do
