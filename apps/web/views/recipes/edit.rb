@@ -5,7 +5,7 @@ require_relative './units'
 module Web
   module Views
     module Recipes
-      class New
+      class Edit
         include Web::View
         include Web::Views::Recipes::Units
       end

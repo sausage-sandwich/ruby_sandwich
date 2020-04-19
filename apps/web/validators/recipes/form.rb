@@ -3,7 +3,7 @@
 module Web
   module Validators
     module Recipes
-      class Create
+      class Form
         include Hanami::Validations::Form
 
         validations do
@@ -13,7 +13,7 @@ module Web
             schema do
               required(:title).filled(:str?)
               optional(:unit).maybe(:str?)
-              optional(:quantity).maybe(:int?)
+              optional(:quantity).maybe(:float?)
             end
           end
         end

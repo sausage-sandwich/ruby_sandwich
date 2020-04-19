@@ -2,6 +2,7 @@
   .col-md-12
     h3.text-capitalize
       = recipe.title
+      small = link_to 'edit', Web.routes.path(:edit_recipe, id: recipe.id), class: 'font-weight-light text-secondary ml-2'
 
 .row
   = image('recipe_placeholder.png', class: 'card-img-top col-md-6')

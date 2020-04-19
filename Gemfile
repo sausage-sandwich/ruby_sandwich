@@ -7,6 +7,7 @@ gem 'hanami-model', '~> 1.3'
 gem 'rake'
 
 gem 'bootstrap', '~> 4.4.1'
+gem 'interactor'
 gem 'pg'
 gem 'sass'
 gem 'slim'

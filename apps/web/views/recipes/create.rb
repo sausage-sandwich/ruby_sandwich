@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
+require_relative './units'
+
 module Web
   module Views
     module Recipes
       class Create
         include Web::View
-        template 'recipes/new'
+        include Web::Views::Recipes::Units
 
-        # FIXME remove duplication in Views::Recipes::New
-        def units
-          { kg: :kg, g: :g }
-        end
+        template 'recipes/new'
       end
     end
   end

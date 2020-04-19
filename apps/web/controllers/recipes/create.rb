@@ -6,18 +6,18 @@ module Web
       class Create
         include Web::Action
 
-        expose :recipe
+        expose :recipe, :errors
 
         def call(params)
           recipe_repo = RecipeRepository.new
-          ingredient_repo = IngredientRepository.new
 
-          form = Web::Validators::Recipes::Create.new(params[:recipe]).validate
+          form = Web::Validators::Recipes::Form.new(params[:recipe]).validate
           if form.success?
             attrs = form.to_h
             recipe_ingredients = attrs.fetch(:recipe_ingredients, []).map do |recipe_ingredient_params|
-              title = recipe_ingredient_params.delete(:title)
-              ingredient = ingredient_repo.find_by_title(title) || ingredient_repo.create(title: title)
+              ingredient = Web::Interactors::RecipeIngredients::FindOrCreate.
+                call!(title: recipe_ingredient_params.delete(:title)).
+                ingredient
 
               recipe_ingredient_params.merge(ingredient_id: ingredient.id)
             end
@@ -27,6 +27,7 @@ module Web
             redirect_to routes.recipe_path(id: recipe.id)
           else
             @recipe = form
+            @errors = form.messages(full: true)
           end
         end
       end
