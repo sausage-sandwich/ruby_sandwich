@@ -3,3 +3,5 @@ cache: bundler
 rvm:
   - 2.6.6
   - 2.7
+services:
+  - postgresql
