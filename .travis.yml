@@ -5,3 +5,5 @@ rvm:
   - 2.7
 services:
   - postgresql
+before_script:
+  - bundle exec hanami db create
