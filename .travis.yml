@@ -1,0 +1,8 @@
+language: ruby
+cache: bundler
+rvm:
+  - 2.6.6
+services:
+  - postgresql
+before_script:
+  - bundle exec hanami db prepare
