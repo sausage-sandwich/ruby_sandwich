@@ -2,7 +2,7 @@
 
 RSpec.describe Web::Controllers::ShoppingLists::Create, type: :action do
   let(:action) { described_class.new }
-  let(:params) { Hash[] }
+  let(:params) { { shopping_list: { title: 'title' } } }
 
   it 'is successful' do
     response = action.call(params)

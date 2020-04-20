@@ -8,6 +8,7 @@ module Web
           include Web::Action
 
           params do
+            required(:shopping_list_id).filled(:int?)
             required(:shopping_list_item).schema do
               required(:title).filled(:str?)
             end
