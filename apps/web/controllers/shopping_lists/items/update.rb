@@ -20,7 +20,7 @@ module Web
 
             item = shopping_list_item_repo.
               find_by_shopping_list(params[:shopping_list_id], params[:id])
-            puts params.valid?
+
             if params.valid? && item
               checked = params[:shopping_list_item].fetch(:checked)
               shopping_list_item_repo.update(item.id, checked: checked)
