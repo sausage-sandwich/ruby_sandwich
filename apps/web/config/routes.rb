@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-resources :recipes, only: %i[index show new create edit update]
-resources :shopping_lists, only: %i[index show new create edit update]
+resources :recipes
+resources :shopping_lists do
+  resources :items
+end
 
 root to: 'recipes#index'

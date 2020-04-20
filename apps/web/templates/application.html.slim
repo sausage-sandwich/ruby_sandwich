@@ -4,8 +4,8 @@ html lang='en'
     meta charset='utf-8'
     meta content='IE=edge' http-equiv='X-UA-Compatible'
     meta content='width=device-width, initial-scale=1' name='viewport'
-    meta content=' name='description'
-    meta content=' name='author'
+    meta content='' name='description'
+    meta content='' name='author'
     = stylesheet 'application'
     = javascript 'application'
     title Hello Sandwich!
@@ -18,7 +18,7 @@ html lang='en'
             .collapse.navbar-collapse
               .navbar-nav
                 = link_to 'Sausage Sandwich', Web.routes.path(:recipes), class: 'navbar-brand'
-                = link_to 'New Recipe', Web.routes.path(:new_recipe)
+                = link_to 'New Recipe', Web.routes.path(:new_recipe), class: 'btn btn-dark'
                 = link_to 'Shopping Lists', Web.routes.path(:shopping_lists)
 
       main role='main'
