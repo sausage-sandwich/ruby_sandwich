@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Admin::Views::Ingredients::Update, type: :view do
   let(:exposures) { Hash[format: :html] }
   let(:template)  { Hanami::View::Template.new('apps/admin/templates/ingredients/update.html.slim') }
