@@ -9,4 +9,10 @@ RSpec.describe Web::Views::Recipes::Show, type: :view do
   it 'exposes #format' do
     expect(view.format).to eq exposures.fetch(:format)
   end
+
+  it 'presents nutrient in grams' do
+    value = view.nutrient(1000)
+
+    expect(value).to eq '1 g'
+  end
 end

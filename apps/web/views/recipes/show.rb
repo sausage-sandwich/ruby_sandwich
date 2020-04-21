@@ -16,6 +16,11 @@ module Web
           safe = h(text)
           raw(safe.split("\n").join('<br/>'))
         end
+
+        def nutrient(milligrams)
+          grams = Metric.mg_to_g(milligrams)
+          format('%<value>s g', value: grams)
+        end
       end
     end
   end
