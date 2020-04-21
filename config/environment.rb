@@ -5,8 +5,10 @@ require 'hanami/setup'
 require 'hanami/model'
 require_relative '../lib/sandwich'
 require_relative '../apps/web/application'
+require_relative '../apps/admin/application'
 
 Hanami.configure do
+  mount Admin::Application, at: '/admin'
   mount Web::Application, at: '/'
 
   model do
