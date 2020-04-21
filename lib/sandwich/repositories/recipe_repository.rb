@@ -7,7 +7,7 @@ class RecipeRepository < Hanami::Repository
   end
 
   def find_with_ingredients(id)
-    aggregate(recipe_ingredients: :ingredient).where(id: id).map_to(Recipe).one
+    aggregate(:ingredients, recipe_ingredients: :ingredient).where(id: id).map_to(Recipe).one
   end
 
   def all_with_ingredients
