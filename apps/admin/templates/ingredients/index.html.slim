@@ -1,0 +1,7 @@
+.row
+  h1 Ingredients
+.row
+  ul.list-unstyled
+    - ingredients.each do |ingredient|
+      li
+        = link_to ingredient.title, Admin.routes.path(:edit_ingredient, id: ingredient.id)
