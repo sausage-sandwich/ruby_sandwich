@@ -16,3 +16,16 @@ Layout/LineLength:
   URISchemes:
   - http
   - https
+
+Layout/ArgumentAlignment:
+  StyleGuide: '#no-double-indent'
+  Enabled: true
+  EnforcedStyle: with_fixed_indentation
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: true
+  EnforcedStyle: indented
+
+Layout/DotPosition:
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#consistent-multi-line-chains'
+  EnforcedStyle: trailing
