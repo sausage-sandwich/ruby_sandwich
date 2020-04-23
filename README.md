@@ -1,6 +1,7 @@
 # Sandwich
 
-Welcome to your new Hanami project!
+[![Maintainability](https://api.codeclimate.com/v1/badges/0b931040ab1af9b304d7/maintainability)](https://codeclimate.com/github/sausage-sandwich/ruby_sandwich/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/0b931040ab1af9b304d7/test_coverage)](https://codeclimate.com/github/sausage-sandwich/ruby_sandwich/test_coverage)
 
 ## Setup
 
@@ -29,5 +30,3 @@ How to prepare (create and migrate) DB for `development` and `test` environments
 
 % HANAMI_ENV=test bundle exec hanami db prepare
 ```
-
-Explore Hanami [guides](https://guides.hanamirb.org/), [API docs](http://docs.hanamirb.org/1.3.3/), or jump in [chat](http://chat.hanamirb.org) for help. Enjoy! 🌸

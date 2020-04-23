@@ -1,0 +1,18 @@
+.row
+  h1= ingredient.title
+
+.row
+  = form_for :ingredient, routes.ingredient_path(id: ingredient.id), values: { ingredient: ingredient }, method: :patch do
+    - div class: 'form-group'
+      - label :carbohydrates_mg, class: 'control-label'
+      - text_field :carbohydrates_mg, class: 'form-control'
+
+    - div class: 'form-group'
+      - label :fat_mg, class: 'control-label'
+      - text_field :fat_mg, class: 'form-control'
+
+    - div class: 'form-group'
+      - label :protein_mg, class: 'control-label'
+      - text_field :protein_mg, class: 'form-control'
+
+    - submit 'Update ingredient', class: 'btn btn-primary'
