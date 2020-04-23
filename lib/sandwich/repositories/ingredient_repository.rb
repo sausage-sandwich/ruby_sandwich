@@ -9,4 +9,8 @@ class IngredientRepository < Hanami::Repository
   def find_by_title(title)
     ingredients.where(title: title).one
   end
+
+  def alphabetical
+    ingredients.order { title.asc }
+  end
 end

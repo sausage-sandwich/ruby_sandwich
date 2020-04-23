@@ -9,11 +9,13 @@ module MacroToEnergy
     fat: 9,
     protein: 4
   }.freeze
-  MILLIGRAMS_IN_GRAM = 1000
 
   module_function
 
   def call(macro_name, milligrams)
-    ENERGY_BY_MACROS.fetch(macro_name) * milligrams / MILLIGRAMS_IN_GRAM
+    energy = ENERGY_BY_MACROS.fetch(macro_name)
+    weight = Metric.mg_to_g(milligrams)
+
+    energy * weight
   end
 end
