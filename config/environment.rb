@@ -5,8 +5,10 @@ require 'hanami/setup'
 require 'hanami/model'
 require_relative '../lib/sandwich'
 require_relative '../apps/web/application'
+require_relative '../apps/admin/application'
 
 Hanami.configure do
+  mount Admin::Application, at: '/admin'
   mount Web::Application, at: '/'
 
   model do
@@ -42,6 +44,6 @@ Hanami.configure do
   end
 
   environment :production do
-    logger level: :info, formatter: :json, filter: []
+    logger 'daily', level: :info, formatter: :json, filter: [], stream: 'log/production.log'
   end
 end
