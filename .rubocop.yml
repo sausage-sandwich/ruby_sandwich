@@ -18,9 +18,6 @@ Layout/LineLength:
   - https
 
 Layout/ArgumentAlignment:
-  Description: >-
-                 Align the arguments of a method call if they span more
-                 than one line.
   StyleGuide: '#no-double-indent'
   Enabled: true
   EnforcedStyle: with_fixed_indentation
@@ -30,6 +27,5 @@ Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
 Layout/DotPosition:
-  Description: 'Checks the position of the dot in multi-line method calls.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#consistent-multi-line-chains'
   EnforcedStyle: trailing
