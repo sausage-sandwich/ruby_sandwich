@@ -6,6 +6,7 @@ gem 'hanami', '~> 1.3'
 gem 'hanami-model', '~> 1.3'
 gem 'rake'
 
+gem 'bcrypt'
 gem 'bootstrap', '~> 4.4.1'
 gem 'interactor'
 gem 'pg'

@@ -27,6 +27,7 @@ GEM
     ast (2.4.0)
     autoprefixer-rails (9.7.6)
       execjs
+    bcrypt (3.1.13)
     better_errors (2.6.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -310,6 +311,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   bootstrap (~> 4.4.1)
   capistrano
   capistrano-hanami
