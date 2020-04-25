@@ -2,4 +2,4 @@ version: "2"
 plugins:
   rubocop:
     enabled: true
-    channel: 0.81.0
+    channel: rubocop-0-81
