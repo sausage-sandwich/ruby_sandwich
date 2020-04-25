@@ -3,7 +3,7 @@ set :keep_releases, 15
 set :asset_roles, %i[app]
 set :env_file, '.env.production'
 
-servers = ['superuser@104.248.142.102']
+servers = ['superuser@sausage-sandwich.club']
 
 role :app, servers
 role :web, servers
