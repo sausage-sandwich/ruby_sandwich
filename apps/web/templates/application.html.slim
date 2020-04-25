@@ -20,14 +20,8 @@ html lang="en"
                 = link_to "Sausage Sandwich", Web.routes.path(:recipes), class: 'navbar-brand'
                 .collapse.navbar-collapse
                   ul.navbar-nav.mr-auto
-                    - if authenticated?
-                      li.nav-item
-                        = "Hello, #{current_user.name || current_user.email}" if authenticated?
-                      li.nav-item
-                        = link_to 'Sign out', Web.routes.path(:session), method: :delete
-                    - else
-                      li.nav-item
-                        = link_to 'Sign in', Web.routes.path(:new_session)
+                    li.nav-item
+                      = link_to 'Sign up', Web.routes.path(:new_user)
 
       main role="main"
         = yield

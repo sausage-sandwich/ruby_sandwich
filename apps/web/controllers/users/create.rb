@@ -6,6 +6,8 @@ module Web
       class Create
         include Web::Action
 
+        expose :user
+
         params do
           required(:user).schema do
             required(:email).filled(:str?)
@@ -15,10 +17,12 @@ module Web
         end
 
         def call(params)
-          if params.valid?
-            user_repo = UserRepository.new
-            user_repo.create(params)
-          end
+          create_user = CreateUser.new
+
+          return unless params.valid?
+
+          result = create_user.call(params[:user])
+          redirect_to routes.root_path if result.success?
         end
       end
     end
