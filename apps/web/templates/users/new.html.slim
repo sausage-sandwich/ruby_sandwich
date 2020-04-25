@@ -1,0 +1,7 @@
+.row
+  .col-md-6.offset-md-3
+    = form_for :user, routes.users_path do
+      - text_field :email, placeholder: 'Email', class: 'form-control mb-1'
+      - password_field :password, placeholder: 'Password', class: 'form-control mb-1'
+      - text_field :name, placeholder: 'Name', class: 'form-control mb-1'
+      - submit 'Sign up', class: 'btn btn-success'

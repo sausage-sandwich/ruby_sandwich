@@ -44,6 +44,6 @@ Hanami.configure do
   end
 
   environment :production do
-    logger 'daily', level: :info, formatter: :json, filter: [], stream: 'log/production.log'
+    logger 'daily', level: :info, formatter: :json, filter: %i[password], stream: 'log/production.log'
   end
 end
