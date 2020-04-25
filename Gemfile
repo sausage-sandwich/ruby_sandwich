@@ -8,6 +8,7 @@ gem 'rake'
 
 gem 'bcrypt'
 gem 'bootstrap', '~> 4.4.1'
+gem 'dotenv', '~> 2.4'
 gem 'interactor'
 gem 'pg'
 gem 'sass'
@@ -23,10 +24,6 @@ group :development do
   gem 'pry-byebug'
   gem 'rubocop'
   gem 'shotgun', platforms: :ruby
-end
-
-group :test, :development do
-  gem 'dotenv', '~> 2.4'
 end
 
 group :test do
