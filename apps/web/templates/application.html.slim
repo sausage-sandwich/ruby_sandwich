@@ -18,7 +18,10 @@ html lang="en"
             .collapse.navbar-collapse
               .navbar-nav
                 = link_to "Sausage Sandwich", Web.routes.path(:recipes), class: 'navbar-brand'
-                = link_to "New Recipe", Web.routes.path(:new_recipe), class: 'btn btn-dark'
+                .collapse.navbar-collapse
+                  ul.navbar-nav.mr-auto
+                    li.nav-item
+                      = link_to 'Sign up', Web.routes.path(:new_user)
 
       main role="main"
         = yield
