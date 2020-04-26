@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Web::Controllers::Sessions::New, type: :action do
+RSpec.describe Web::Controllers::Session::New, type: :action do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
 
