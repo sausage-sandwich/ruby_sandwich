@@ -6,7 +6,7 @@ module Web
       class Create
         include Web::Action
 
-        expose :recipe, :errors
+        expose :recipe
 
         def call(params)
           recipe_repo = RecipeRepository.new
@@ -27,7 +27,6 @@ module Web
             redirect_to routes.recipe_path(id: recipe.id)
           else
             @recipe = form
-            @errors = form.messages(full: true)
           end
         end
       end

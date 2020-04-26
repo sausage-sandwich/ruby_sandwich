@@ -1,9 +1,3 @@
-- if defined?(errors) && errors
-  .row
-    .col-md-8.offset-md-2
-      .alert.alert-danger
-        = errors.inspect
-
 .row
   .col-md-8.offset-md-2
     = form_for :recipe, routes.recipe_path(id: recipe.id), values: { recipe: recipe }, method: :patch do
