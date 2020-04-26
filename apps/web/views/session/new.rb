@@ -2,8 +2,8 @@
 
 module Web
   module Views
-    module Sessions
-      class Destroy
+    module Session
+      class New
         include Web::View
       end
     end

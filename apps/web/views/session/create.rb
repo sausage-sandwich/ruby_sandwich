@@ -2,7 +2,7 @@
 
 module Web
   module Views
-    module Sessions
+    module Session
       class Create
         include Web::View
       end

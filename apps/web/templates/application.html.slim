@@ -14,14 +14,21 @@ html lang="en"
     .container
       header.header
         nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-4 role="navigation"
-          .container
-            .collapse.navbar-collapse
-              .navbar-nav
-                = link_to "Sausage Sandwich", Web.routes.path(:recipes), class: 'navbar-brand'
-                .collapse.navbar-collapse
-                  ul.navbar-nav.mr-auto
-                    li.nav-item
-                      = link_to 'Sign up', Web.routes.path(:new_user)
+          = link_to "Sausage Sandwich", Web.routes.path(:recipes), class: 'navbar-brand'
+          .collapse.navbar-collapse
+            ul.navbar-nav.mr-auto
+              - if authenticated?
+                li.nav-item
+                  .nav-link.btn
+                    = "Hello, #{current_user.name || current_user.email}"
+                li.nav-item
+                  = form_for :session, Web.routes.path(:session), method: 'delete' do
+                    - submit 'Sign out', class: 'nav-link btn'
+              - else
+                li.nav-item
+                  = link_to 'Sign up', Web.routes.path(:new_user), class: 'nav-link btn'
+                li.nav-item
+                  = link_to 'Sign in', Web.routes.path(:new_session), class: 'nav-link btn'
 
       main role="main"
         = yield

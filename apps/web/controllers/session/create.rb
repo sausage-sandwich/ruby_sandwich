@@ -2,7 +2,7 @@
 
 module Web
   module Controllers
-    module Sessions
+    module Session
       class Create
         include Web::Action
 
@@ -23,7 +23,7 @@ module Web
             end
           end
 
-          redirect_to Web.routes.path(:recipes)
+          redirect_to routes.root_path
         end
 
         private

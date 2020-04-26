@@ -2,7 +2,7 @@
 
 module Web
   module Controllers
-    module Sessions
+    module Session
       class Destroy
         include Web::Action
 
