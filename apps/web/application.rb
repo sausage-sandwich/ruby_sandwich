@@ -251,7 +251,7 @@ module Web
       #
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
       controller.prepare do
-        include Web::Authentication
+        include Web::Controllers::Authentication
       end
 
       # Configure the code that will yield each time Web::View is included
