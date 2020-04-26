@@ -6,7 +6,7 @@ module Web
       class Update
         include Web::Action
 
-        expose :recipe, :errors
+        expose :recipe
 
         def call(params)
           recipe_repo = RecipeRepository.new
@@ -18,8 +18,6 @@ module Web
             Web::Interactors::Recipes::Update.call!(recipe: @recipe, attrs: form.to_h)
 
             redirect_to routes.recipe_path(id: @recipe.id)
-          else
-            @errors = form.messages(full: true)
           end
         end
       end
