@@ -23,8 +23,6 @@ module Web
       #
       load_paths << %w[
         controllers
-        interactors
-        validators
         views
       ]
 
