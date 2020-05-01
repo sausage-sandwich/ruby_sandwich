@@ -12,7 +12,7 @@ RSpec.describe FindOrCreateIngredient do
     it { expect(ingredient).to eq existing_ingredient }
   end
 
-  context 'when does ingredient' do
+  context 'when new ingredient' do
     let(:ingredient_repo) { IngredientRepository.new }
 
     it 'creates it' do
