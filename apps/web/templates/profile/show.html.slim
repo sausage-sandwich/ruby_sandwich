@@ -5,4 +5,4 @@
         = image('recipe_placeholder.png', class: 'card-img-top')
         .card-body
           h5.card-title
-            = recipe.title, Web.routes.path(:recipe, id: recipe.id)
+            = link_to recipe.title, routes.profile_recipe_path(id: recipe.id)
