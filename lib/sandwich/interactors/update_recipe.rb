@@ -11,9 +11,7 @@ class UpdateRecipe
     recipe_ingredients = build_ingredient_params(recipe_params.fetch(:recipe_ingredients, []))
 
     recipe_ingredient_repo.delete_for_recipe(recipe)
-    recipe_ingredients.each do |recipe_ingredient|
-      recipe_ingredient_repo.create(recipe_ingredient.merge(recipe_id: recipe.id))
-    end
+    create_recipe_ingredients(recipe, recipe_ingredients)
 
     recipe_repo.update(recipe.id, recipe_params.slice(:title, :body))
     @recipe = recipe_repo.find_with_ingredients(recipe.id)
@@ -32,6 +30,12 @@ class UpdateRecipe
       else
         error!('could not create all ingredients')
       end
+    end
+  end
+
+  def create_recipe_ingredients(recipe, recipe_ingredients)
+    recipe_ingredients.each do |recipe_ingredient|
+      recipe_ingredient_repo.create(recipe_ingredient.merge(recipe_id: recipe.id))
     end
   end
 
