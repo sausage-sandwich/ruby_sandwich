@@ -27,15 +27,19 @@ module Web
           def call(params)
             @recipe = recipe_repo.find_with_ingredients(params[:id])
 
-            if params.valid?
-              result = update_recipe.call(recipe, params[:recipe].merge(user_id: current_user.id))
-              @recipe = result.recipe
+            return unless params.valid?
 
-              redirect_to routes.profile_recipe_path(id: @recipe.id) if result.success?
-            end
+            result = update_recipe.call(recipe, recipe_params(params))
+            @recipe = result.recipe
+
+            redirect_to routes.profile_recipe_path(id: @recipe.id) if result.success?
           end
 
           private
+
+          def recipe_params(params)
+            params[:recipe].merge(user_id: current_user.id)
+          end
 
           def recipe_repo
             RecipeRepository.new
