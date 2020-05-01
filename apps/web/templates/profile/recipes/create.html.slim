@@ -1,0 +1,22 @@
+.row
+  .col-md-8.offset-md-2
+    = form_for :recipe, routes.profile_recipes_path, values: { recipe: recipe } do
+      - label :title, class: 'control-label'
+      - text_field :title, class: 'form-control'
+
+      - label :ingredients, class: 'control-label'
+
+      - div class: 'js-repeatable form-inline' do
+        - fields_for_collection :recipe_ingredients
+          - div class: 'js-repeatable-block' do
+            - text_field :title, class: 'form-control mb-2 mr-2'
+            - number_field :quantity, class: 'form-control mb-2 mr-2', step: 'any'
+            - select :unit, units, class: 'form-control mb-2 mr-2'
+        - div 'Add', class: 'js-repeatable-block-add-button btn btn-warning mb-2 mr-2'
+
+      - div class: 'form-group' do
+        - label :body, class: 'control-label'
+        - text_area :body, class: 'form-control', rows: 12
+
+      - div class: 'form-group' do
+        - submit 'Submit', class: 'btn btn-primary'
