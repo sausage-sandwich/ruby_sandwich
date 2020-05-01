@@ -19,8 +19,9 @@ html lang="en"
             ul.navbar-nav.mr-auto
               - if defined?(current_user) && current_user # TODO: inline 'signed_in?', move to a view helper
                 li.nav-item
-                  .nav-link.btn
-                    = link_to "Hello, #{current_user.name || current_user.email}", routes.profile_path
+                  = link_to "Hello, #{current_user.name || current_user.email}", routes.profile_path, class: 'nav-link btn'
+                li.nav-item
+                  = link_to 'Create Recipe', routes.new_profile_recipe_path, class: 'nav-link btn'
                 li.nav-item
                   = form_for :session, Web.routes.path(:session), method: 'delete' do
                     - submit 'Sign out', class: 'nav-link btn'
