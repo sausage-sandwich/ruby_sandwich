@@ -6,4 +6,6 @@ resource :session, only: %i[new create destroy]
 
 root to: 'recipes#index'
 
-resource :profile
+resource :profile do
+  resources :recipes
+end

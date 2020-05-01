@@ -1,0 +1,37 @@
+.row
+  .col-md-12
+    h3.text-capitalize
+      = recipe.title
+      small = link_to 'edit', routes.edit_profile_recipe_path(id: recipe.id), class: 'font-weight-light text-secondary ml-2'
+
+.row
+  = image('recipe_placeholder.png', class: 'card-img-top col-md-6')
+  .col-md-6
+    h5 Nutrition facts per 100 grams
+    ul.list-unstyled
+      li
+        b Cabrohydrates:
+        =< nutrient(recipe.nutrition_facts.carbohydrates_mg)
+      li
+        b Fat:
+        =< nutrient(recipe.nutrition_facts.fat_mg)
+      li
+        b Protein:
+        =< nutrient(recipe.nutrition_facts.protein_mg)
+      li
+        b Calories:
+        =< recipe.nutrition_facts.calories
+
+.row
+  .col-md-6
+    h5 Ingredients
+    table.table.table-sm.table-striped
+      - recipe.recipe_ingredients.each do |recipe_ingredient|
+        tr
+          td.text-right.text-capitalize
+            = recipe_ingredient.ingredient.title
+          td
+            = display_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
+  .col-md-6
+    h5 Instructions
+    = text_with_newlines(recipe.body)
