@@ -12,6 +12,7 @@ module Web
       private
 
       def current_user
+        raise 'xxx'
         @current_user ||= UserRepository.new.find(session[:user_id])
       end
     end
