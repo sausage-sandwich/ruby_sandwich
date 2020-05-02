@@ -29,6 +29,14 @@ class Unit
     pound: { quantity: 453.592, unit: :g },
     ounce: { quantity: 28.3495, unit: :g }
   }.freeze
+  TO_GRAMS_CONVERSION_RATE = {
+    g: 1,
+    kg: 1000,
+    pound: CONVERSION_RATE.fetch(:pound).fetch(:quantity),
+    ounce: CONVERSION_RATE.fetch(:ounce).fetch(:quantity)
+  }.freeze
+
+  ConversionError = Class.new(StandardError)
 
   attr_reader :quantity, :unit
 
@@ -42,6 +50,13 @@ class Unit
     return self unless metric
 
     Unit.new(quantity * metric[:quantity], metric[:unit])
+  end
+
+  def convert_to_grams
+    rate = TO_GRAMS_CONVERSION_RATE.fetch(unit.to_sym, nil)
+    raise ConversionError, "can't convert #{unit} to grams" unless rate
+
+    Unit.new(quantity * rate, :g)
   end
 
   def humanize
