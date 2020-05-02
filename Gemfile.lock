@@ -220,6 +220,7 @@ GEM
       ffi (~> 1.0)
     regexp_parser (1.7.0)
     rexml (3.2.4)
+    rollbar (2.25.0)
     rom (3.3.3)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.3)
@@ -327,6 +328,7 @@ DEPENDENCIES
   pry-byebug
   puma
   rake
+  rollbar
   rspec
   rubocop
   sass
