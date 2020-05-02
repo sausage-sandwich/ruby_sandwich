@@ -12,6 +12,6 @@ h5 Nutrition facts per 100 grams
       =< nutrient(recipe.nutrition_facts.protein_mg)
     li
       b Calories:
-      =< '%<value>.0f kkal', value: recipe.nutrition_facts.calories
+      =< calories(recipe.nutrition_facts.calories)
 - else
   b Can't calculate nutrition facts: all units should be convertable to grams
