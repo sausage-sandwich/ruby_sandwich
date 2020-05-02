@@ -17,9 +17,9 @@ gem 'slim'
 group :development do
   # Code reloading
   # See: https://guides.hanamirb.org/projects/code-reloading
-  gem 'capistrano'
-  gem 'capistrano-hanami'
-  gem 'capistrano3-puma'
+  gem 'capistrano', require: false
+  gem 'capistrano-hanami', require: false
+  gem 'capistrano3-puma', require: false
   gem 'hanami-webconsole'
   gem 'pry-byebug'
   gem 'rubocop'
