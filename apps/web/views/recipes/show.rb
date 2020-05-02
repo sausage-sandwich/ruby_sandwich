@@ -19,7 +19,17 @@ module Web
 
         def nutrient(milligrams)
           grams = Metric.mg_to_g(milligrams)
-          format('%<value>s g', value: grams)
+          format('%<value>.0f g', value: grams)
+        end
+
+        def calories(kkal)
+          format('%<value>.0f kkal', value: kkal)
+        end
+
+        def nutrition_facts_showable?(recipe)
+          return true if recipe.nutrition_facts
+        rescue ::Unit::ConversionError
+          false
         end
       end
     end
