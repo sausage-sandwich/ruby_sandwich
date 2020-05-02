@@ -2,4 +2,5 @@
 
 require './config/environment'
 
+use Raven::Rack
 run Hanami.app
