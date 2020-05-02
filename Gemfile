@@ -11,6 +11,7 @@ gem 'bootstrap', '~> 4.4.1'
 gem 'dotenv', '~> 2.4'
 gem 'interactor'
 gem 'pg'
+gem 'rollbar'
 gem 'sass'
 gem 'slim'
 
