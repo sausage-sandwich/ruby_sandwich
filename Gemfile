@@ -9,9 +9,9 @@ gem 'rake'
 gem 'bcrypt'
 gem 'bootstrap', '~> 4.4.1'
 gem 'dotenv', '~> 2.4'
+gem 'interactor'
 gem 'pg'
 gem 'sass'
-gem 'sentry-raven'
 gem 'slim'
 
 group :development do
