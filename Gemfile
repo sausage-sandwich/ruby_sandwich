@@ -13,6 +13,7 @@ gem 'interactor'
 gem 'pg'
 gem 'rollbar'
 gem 'sass'
+gem 'shrine'
 gem 'slim'
 
 group :development do

@@ -14,4 +14,14 @@ class Recipe < Hanami::Entity
   def quantity_in_grams
     recipe_ingredients.map(&:quantity_in_grams).inject(&:+)
   end
+
+  def image_url
+    image_attacher.url
+  end
+
+  private
+
+  def image_attacher
+    ImageUploader::Attacher.from_model(self, :image)
+  end
 end

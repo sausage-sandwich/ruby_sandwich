@@ -13,7 +13,9 @@ class UpdateRecipe
     recipe_ingredient_repo.delete_for_recipe(recipe)
     create_recipe_ingredients(recipe, recipe_ingredients)
 
+    update_image(recipe, recipe_params[:image])
     recipe_repo.update(recipe.id, recipe_params.slice(:title, :body))
+
     @recipe = recipe_repo.find_with_ingredients(recipe.id)
   end
 
@@ -37,6 +39,15 @@ class UpdateRecipe
     recipe_ingredients.each do |recipe_ingredient|
       recipe_ingredient_repo.create(recipe_ingredient.merge(recipe_id: recipe.id))
     end
+  end
+
+  def update_image(recipe, image_params)
+    file = (image_params || {}).fetch(:tempfile, nil)
+    return {} unless file
+
+    uploader = ImageUploader.new(:store)
+    upload = uploader.upload(file)
+    recipe_repo.update(recipe.id, image_data: upload.data.to_json)
   end
 
   def find_or_create_ingredient
