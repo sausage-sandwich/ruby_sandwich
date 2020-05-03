@@ -1,4 +1,6 @@
-h5 Nutrition facts per 100 grams
+h5
+  = 'Nutrition facts per 100 grams'
+  small = link_to 'calculate', routes.edit_profile_recipe_ingredients_path(recipe_id: recipe.id), class: 'font-weight-light text-secondary ml-1'
 - if nutrition_facts_showable?(recipe)
   ul.list-unstyled
     li
