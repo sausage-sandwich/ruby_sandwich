@@ -14,6 +14,12 @@ module Web
             required(:recipe).schema do
               required(:title).filled(:str?)
               required(:body).filled(:str?)
+              optional(:image).schema do
+                required(:tempfile) { filled? }
+                optional(:filename).maybe(:str?)
+                optional(:type).maybe(:str?)
+                optional(:name).maybe(:str?)
+              end
               required(:recipe_ingredients, :array).each do
                 schema do
                   required(:title).filled(:str?)
@@ -26,7 +32,6 @@ module Web
 
           def call(params)
             @recipe = recipe_repo.find_with_ingredients(params[:id])
-
             return unless params.valid?
 
             result = update_recipe.call(recipe, recipe_params(params))
