@@ -34,7 +34,7 @@ module Web
           end
 
           def image_url(recipe)
-            recipe.image_url || 'recipe_placeholder.png'
+            recipe.image_url || 'recipe_placeholder.jpg'
           end
         end
       end

@@ -10,5 +10,7 @@ Shrine.storages = {
 
 Shrine.plugin :sequel
 Shrine.plugin :cached_attachment_data
-Shrine.plugin :restore_cached_data
 Shrine.plugin :rack_file
+Shrine.plugin :derivatives
+Shrine.plugin :validation
+Shrine.plugin :remove_invalid

@@ -15,8 +15,12 @@ class Recipe < Hanami::Entity
     recipe_ingredients.map(&:quantity_in_grams).inject(&:+)
   end
 
-  def image_url
-    image_attacher.url
+  def image_url(version = nil)
+    version ? image_attacher.url(version.to_sym) : image_attacher.url
+  end
+
+  def image
+    image_attacher.file
   end
 
   private

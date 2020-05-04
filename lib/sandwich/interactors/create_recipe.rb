@@ -9,11 +9,13 @@ class CreateRecipe
 
   def call(recipe_params)
     ingredients_params = build_ingredient_params(recipe_params.fetch(:recipe_ingredients, []))
+    image_data = build_image_params(recipe_params.fetch(:image, {}))
 
     @recipe = recipe_repo.create_with_recipe_ingredients(
       recipe_params.
         slice(:title, :body, :user_id).
-        merge(recipe_ingredients: ingredients_params)
+        merge(recipe_ingredients: ingredients_params).
+        merge(image_data)
     )
   end
 
@@ -31,6 +33,19 @@ class CreateRecipe
         error!('could not create all ingredients')
       end
     end
+  end
+
+  def build_image_params(image_params)
+    file = (image_params || {}).fetch(:tempfile, nil)
+    return {} unless file
+
+    data = build_image_data.call(file).image_data
+
+    { image_data: data.to_json }
+  end
+
+  def build_image_data
+    BuildImageData.new
   end
 
   def find_or_create_ingredient

@@ -5,7 +5,7 @@
       small = link_to 'edit', routes.edit_profile_recipe_path(id: recipe.id), class: 'font-weight-light text-secondary ml-2'
 
 .row
-  img src=(recipe.image_url || asset_path('recipe_placeholder.png')) class='col-md-6'
+  img src=(recipe.image_url(:large) || asset_path('recipe_placeholder.jpg')) class='col-md-6'
   .col-md-6
     = render partial: 'nutrition_facts', locals: { recipe: recipe }
 

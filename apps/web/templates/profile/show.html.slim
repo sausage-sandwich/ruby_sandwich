@@ -2,7 +2,7 @@
   - recipes.each do |recipe|
     .col-md-4
       .card.mb-2
-        = image('recipe_placeholder.png', class: 'card-img-top')
+        img src=(recipe.image_url(:thumb) || asset_path('recipe_placeholder.jpg')) class='card-img-top'
         .card-body
           h5.card-title
             = link_to recipe.title, routes.profile_recipe_path(id: recipe.id)
