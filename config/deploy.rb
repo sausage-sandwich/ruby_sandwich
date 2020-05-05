@@ -9,4 +9,4 @@ set :deploy_to, '/var/www/sandwich'
 set :puma_env, fetch(:rack_env, fetch(:hanami_env, 'production'))
 set :linked_files, %w[.env.production]
 
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system'
+append :linked_dirs, *%w[log tmp/pids tmp/cache tmp/sockets public/system public/uploads]
