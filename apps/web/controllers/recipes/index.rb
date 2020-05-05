@@ -11,7 +11,7 @@ module Web
         def call(params)
           repo = RecipeRepository.new
 
-          @recipes = repo.page(params[:page] || 1)
+          @recipes = repo.latest
         end
       end
     end
