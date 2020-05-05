@@ -8,10 +8,10 @@ module Web
 
         expose :recipes
 
-        def call(_params)
+        def call(params)
           repo = RecipeRepository.new
 
-          @recipes = repo.all
+          @recipes = repo.page(params[:page] || 1)
         end
       end
     end

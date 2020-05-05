@@ -1,7 +1,12 @@
 .row
   .col-md-6.offset-md-3
+    h4 Регистрация
+.row
+  .col-md-6.offset-md-3
     = form_for :user, routes.users_path do
       - text_field :email, placeholder: 'Email', class: 'form-control mb-1'
-      - password_field :password, placeholder: 'Password', class: 'form-control mb-1'
-      - text_field :name, placeholder: 'Name', class: 'form-control mb-1'
-      - submit 'Sign up', class: 'btn btn-success'
+      - password_field :password, placeholder: 'Пароль', class: 'form-control mb-1'
+      - text_field :name, placeholder: 'Имя', class: 'form-control mb-1'
+      - submit 'Зарегистрироваться', class: 'btn btn-success'
+      - span do
+        - link_to 'Войти', routes.new_session_path

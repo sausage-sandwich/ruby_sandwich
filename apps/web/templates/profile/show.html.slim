@@ -1,8 +1,11 @@
 .row
+  .col-md-4
+    h4 Мои рецепты
+.row
   - recipes.each do |recipe|
-    .col-md-4
+    .col-md-3
       .card.mb-2
         img src=(recipe.image_url(:thumb) || asset_path('recipe_placeholder.jpg')) class='card-img-top'
         .card-body
-          h5.card-title
+          h5.card-title.text-truncate
             = link_to recipe.title, routes.profile_recipe_path(id: recipe.id)
