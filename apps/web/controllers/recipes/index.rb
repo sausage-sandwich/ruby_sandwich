@@ -8,7 +8,7 @@ module Web
 
         expose :recipes
 
-        def call(params)
+        def call(_params)
           repo = RecipeRepository.new
 
           @recipes = repo.latest
