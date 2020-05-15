@@ -1,0 +1,17 @@
+h5 Nutrition facts per 100 grams
+- if nutrition_facts_showable?(recipe)
+  ul.list-unstyled
+    li
+      b Cabrohydrates:
+      =< nutrient(recipe.nutrition_facts.carbohydrates_mg)
+    li
+      b Fat:
+      =< nutrient(recipe.nutrition_facts.fat_mg)
+    li
+      b Protein:
+      =< nutrient(recipe.nutrition_facts.protein_mg)
+    li
+      b Calories:
+      =< calories(recipe.nutrition_facts.calories)
+- else
+  i Can't calculate nutrition facts: all units should be convertable to grams

@@ -6,6 +6,19 @@ class RecipeRepository < Hanami::Repository
     has_many :ingredients, through: :recipe_ingredients
   end
 
+  def by_user(user_id)
+    recipes.where(user_id: user_id).order(Sequel.desc(:created_at))
+  end
+
+  def latest
+    recipes.order(Sequel.desc(:created_at))
+  end
+
+  def page(page_number = 1)
+    limit = 16
+    recipes.order(Sequel.desc(:created_at)).limit(limit).offset(limit * (page_number - 1))
+  end
+
   def find_with_ingredients(id)
     aggregate(:ingredients, recipe_ingredients: :ingredient).where(id: id).map_to(Recipe).one
   end

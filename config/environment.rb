@@ -3,6 +3,7 @@
 require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
+require 'rollbar/middleware/rack'
 require_relative '../lib/sandwich'
 require_relative '../apps/web/application'
 require_relative '../apps/admin/application'
@@ -10,6 +11,8 @@ require_relative '../apps/admin/application'
 Hanami.configure do
   mount Admin::Application, at: '/admin'
   mount Web::Application, at: '/'
+
+  middleware.use Rollbar::Middleware::Rack
 
   model do
     ##
@@ -44,6 +47,6 @@ Hanami.configure do
   end
 
   environment :production do
-    logger 'daily', level: :info, formatter: :json, filter: [], stream: 'log/production.log'
+    logger 'daily', level: :info, formatter: :json, filter: %i[password], stream: 'log/production.log'
   end
 end
