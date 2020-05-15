@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Web::Views::ShoppingLists::Index, type: :view do
+RSpec.describe Web::Views::Profile::ShoppingLists::Show, type: :view do
   let(:exposures) { Hash[format: :html] }
-  let(:template)  { Hanami::View::Template.new('apps/web/templates/shopping_lists/index.html.slim') }
+  let(:template)  { Hanami::View::Template.new('apps/web/templates/profile/shopping_lists/show.html.slim') }
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 

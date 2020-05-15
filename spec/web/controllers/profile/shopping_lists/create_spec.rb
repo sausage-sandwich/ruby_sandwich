@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Web::Controllers::ShoppingLists::Create, type: :action do
+RSpec.describe Web::Controllers::Profile::ShoppingLists::Create, type: :action do
   let(:action) { described_class.new }
   let(:params) { { shopping_list: { title: 'title' } } }
 
