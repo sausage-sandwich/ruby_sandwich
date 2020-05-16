@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 RSpec.describe Web::Controllers::Profile::ShoppingLists::Show, type: :action do
+  it_behaves_like 'anonymous user in profile controllers'
+
+  include_context 'signed in user'
+
   let(:action) { described_class.new }
   let(:params) { Hash[] }
 
   it 'is successful' do
-    response = action.call(params)
-    expect(response[0]).to eq 200
+    expect(subject[0]).to eq 200
   end
 end

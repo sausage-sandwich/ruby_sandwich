@@ -8,6 +8,7 @@ module Web
           class Create
             include Web::Action
             include Web::Controllers::Profile::Authentication
+            include Web::Controllers::Profile::ShoppingLists::CurrentList
 
             params do
               required(:shopping_list_id).filled(:int?)
@@ -17,18 +18,24 @@ module Web
             end
 
             def call(params)
-              shopping_list_repo = ShoppingListRepository.new
-              shopping_list = shopping_list_repo.find(params[:shopping_list_id])
-
               if params.valid?
-                shopping_list_item_repo = ShoppingListItemRepository.new
-                shopping_list_item_repo.create(
-                  title: params[:shopping_list_item].fetch(:title),
-                  shopping_list_id: shopping_list.id
+                list_item_repo.create(
+                  title: item_title(params),
+                  shopping_list_id: current_shopping_list.id
                 )
               end
 
-              redirect_to routes.shopping_list_path(id: params[:shopping_list_id])
+              redirect_to routes.profile_shopping_list_path(id: params[:shopping_list_id])
+            end
+
+            private
+
+            def item_title(params)
+              params[:shopping_list_item].fetch(:title)
+            end
+
+            def list_item_repo
+              ShoppingListItemRepository.new
             end
           end
         end

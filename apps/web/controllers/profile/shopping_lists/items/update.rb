@@ -8,6 +8,7 @@ module Web
           class Update
             include Web::Action
             include Web::Controllers::Profile::Authentication
+            include Web::Controllers::Profile::ShoppingLists::CurrentList
 
             params do
               required(:shopping_list_id).filled(:int?)
@@ -28,7 +29,7 @@ module Web
                 shopping_list_item_repo.update(item.id, checked: checked)
               end
 
-              redirect_to routes.shopping_list_path(id: params[:shopping_list_id])
+              redirect_to routes.profile_shopping_list_path(id: params[:shopping_list_id])
             end
           end
         end

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe Web::Controllers::Profile::ShoppingLists::Items::Update, type: :action do
+  it_behaves_like 'anonymous user in profile controllers'
+
+  include_context 'signed in user'
+
   let(:action) { described_class.new }
   let(:params) do
     {
@@ -11,7 +15,7 @@ RSpec.describe Web::Controllers::Profile::ShoppingLists::Items::Update, type: :a
   end
   let(:shopping_list) do
     repo = ShoppingListRepository.new
-    repo.create(title: 'title')
+    repo.create(title: 'title', user_id: user.id)
   end
   let(:shopping_list_item) do
     shopping_list_item_repo.create(
@@ -24,10 +28,7 @@ RSpec.describe Web::Controllers::Profile::ShoppingLists::Items::Update, type: :a
   let(:expected_shopping_list_item) { shopping_list_item_repo.find(shopping_list_item.id) }
 
   it 'is successful' do
-    response = action.call(params)
-    expect(response[0]).to eq 302
-    expect(expected_shopping_list_item).to have_attributes(
-      checked: true
-    )
+    expect(subject[0]).to eq 302
+    expect(expected_shopping_list_item).to have_attributes(checked: true)
   end
 end

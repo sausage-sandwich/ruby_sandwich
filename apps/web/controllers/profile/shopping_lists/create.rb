@@ -17,10 +17,13 @@ module Web
           def call(params)
             if params.valid?
               shopping_list_repo = ShoppingListRepository.new
-              shopping_list_repo.create(title: params[:shopping_list].fetch(:title))
+              shopping_list_repo.create(
+                title: params[:shopping_list].fetch(:title),
+                user_id: current_user.id
+              )
             end
 
-            redirect_to routes.shopping_lists_path
+            redirect_to routes.profile_shopping_lists_path
           end
         end
       end
