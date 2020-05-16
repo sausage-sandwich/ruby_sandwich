@@ -8,4 +8,7 @@ root to: 'recipes#index'
 
 resource :profile do
   resources :recipes
+  resources :shopping_lists do
+    resources :items
+  end
 end

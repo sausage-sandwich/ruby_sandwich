@@ -1,0 +1,17 @@
+.row
+  .col-md-8.offset-md-2
+    h2 = shopping_list.title
+.row
+  .col-md-8.offset-md-2
+    = form_for :shopping_list_item, routes.profile_shopping_list_items_path(shopping_list_id: shopping_list.id), class: 'form-inline' do
+      - text_field :title, placeholder: 'Potato', class: 'form-control'
+      - submit 'Create', class: 'btn btn-primary ml-1'
+
+    ul.list-group
+    - shopping_list.shopping_list_items.each do |item|
+      li.list-group-item
+        = form_for :shopping_list_item, routes.profile_shopping_list_item_path(shopping_list_id: shopping_list.id, id: item.id), method: :patch do
+          - check_box :checked, checked: item.checked, checked_value: 'true', unchecked_value: 'false'
+          - submit :ok
+          - label (item.title || item.ingredient.title)
+

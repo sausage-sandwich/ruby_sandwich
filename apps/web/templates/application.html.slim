@@ -1,11 +1,11 @@
 doctype html
-html lang="en"
+html lang='en'
   head
-    meta charset="utf-8"
-    meta content="IE=edge" http-equiv="X-UA-Compatible"
-    meta content="width=device-width, initial-scale=1" name="viewport"
-    meta content="" name="description"
-    meta content="" name="author"
+    meta charset='utf-8'
+    meta content='IE=edge' http-equiv='X-UA-Compatible'
+    meta content='width=device-width, initial-scale=1' name='viewport'
+    meta content='' name='description'
+    meta content='' name='author'
     = stylesheet 'application'
     = javascript 'application'
     title Бутерброд с колбасой
@@ -23,6 +23,8 @@ html lang="en"
                 li.nav-item
                   = link_to 'Записать рецепт', routes.new_profile_recipe_path, class: 'nav-link btn'
                 li.nav-item
+                  = link_to 'Списки покупок', routes.profile_shopping_lists_path, class: 'nav-link btn'
+                li.nav-item
                   = form_for :session, Web.routes.path(:session), method: 'delete' do
                     - submit 'Выйти', class: 'nav-link btn'
               - else
@@ -31,5 +33,5 @@ html lang="en"
                 li.nav-item
                   = link_to 'Войти', Web.routes.path(:new_session), class: 'nav-link btn'
 
-      main role="main"
+      main role='main'
         = yield
