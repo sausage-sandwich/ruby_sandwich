@@ -12,6 +12,10 @@
 .row
   .col-md-6
     h5 Ingredients
+    = form_for :add_to_list, routes.profile_shopping_list_add_recipe_path, class: 'form-inline' do
+      - number_field :recipe_id, value: recipe.id, hidden: true
+      - select :shopping_list_id, shopping_lists, class: 'form-control'
+      - submit 'Добавить в список', class: 'btn btn-primary ml-2'
     table.table.table-sm.table-striped
       - recipe.recipe_ingredients.each do |recipe_ingredient|
         tr

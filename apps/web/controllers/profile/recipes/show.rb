@@ -8,12 +8,25 @@ module Web
           include Web::Action
           include Web::Controllers::Profile::Authentication
 
-          expose :recipe
+          expose :recipe, :shopping_lists
 
           def call(params)
-            repo = RecipeRepository.new
+            @recipe = recipe_repo.find_with_ingredients(params[:id])
 
-            @recipe = repo.find_with_ingredients(params[:id])
+            shopping_lists = shopping_lists_repo.by_user(user_id: current_user.id)
+            @shopping_lists = shopping_lists.to_a.each_with_object({}) do |list, memo|
+              memo[list.title] = list.id
+            end
+          end
+
+          private
+
+          def recipe_repo
+            RecipeRepository.new
+          end
+
+          def shopping_lists_repo
+            ShoppingListRepository.new
           end
         end
       end
