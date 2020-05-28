@@ -12,4 +12,11 @@ class ShoppingListItemRepository < Hanami::Repository
       map_to(ShoppingListItem).
       one
   end
+
+  def find_by_list_and_title(id, title)
+    shopping_list_items.where(
+      shopping_list_id: id,
+      title: title
+    ).one
+  end
 end

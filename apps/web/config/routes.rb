@@ -12,3 +12,8 @@ resource :profile do
     resources :items
   end
 end
+post(
+  '/profile/shopping_lists/add_recipe',
+  to: 'profile/shopping_lists#add_recipe',
+  as: :profile_shopping_list_add_recipe
+)

@@ -6,7 +6,7 @@ class ShoppingListRepository < Hanami::Repository
     has_many :ingredients, through: :shopping_list_items
   end
 
-  def find_with_items(id:, user_id:)
+  def find_with_items(id:, user_id: nil)
     aggregate(shopping_list_items: :ingredient).
       where(id: id, user_id: user_id).
       map_to(ShoppingList).
