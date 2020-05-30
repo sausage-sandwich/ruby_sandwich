@@ -1,3 +1,9 @@
+ol.breadcrumb
+  li.breadcrumb-item
+    = link_to (current_user.name || current_user.email), routes.profile_path
+  li.breadcrumb-item.active
+    = link_to recipe.title, routes.profile_recipe_path(id: recipe.id)
+
 .row
   .col-md-12
     h3.text-capitalize

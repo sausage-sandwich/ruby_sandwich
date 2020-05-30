@@ -1,0 +1,36 @@
+ol.breadcrumb
+  li.breadcrumb-item
+    = link_to (current_user.name || current_user.email), routes.profile_path
+  li.breadcrumb-item
+    = link_to recipe.title, routes.profile_recipe_path(id: recipe.id)
+  li.breadcrumb-item.active
+    = link_to 'Nutrition Information', routes.edit_profile_recipe_ingredients_path(recipe_id: recipe.id)
+
+.row
+  .col-sm-10.offset-sm-1
+    .row.bg-light.text-center
+      .col-sm-1 = 'Title'
+      .col-sm-2 = 'Quantity'
+      .col-sm-3 = 'Protein per 100 g'
+      .col-sm-3 = 'Fat per 100 g'
+      .col-sm-3 = 'Carbohydrates per 100 g'
+    = form_for :recipe, routes.profile_recipe_ingredients_path(recipe_id: recipe.id), values: { recipe: recipe } do
+      - fields_for_collection :recipe_ingredients do |i, recipe_ingredient|
+        - div class: 'row' do
+          - div class: 'col-sm-1 text-center' do
+            - number_field :id, hidden: true
+            - text_field :title, hidden: true
+            - label recipe_ingredient.ingredient.title
+          - div class: 'col-sm-2 text-center' do
+            - label display_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
+            - number_field :quantity, value: recipe_ingredient.quantity.to_f, hidden: true
+          - div class: 'col-sm-3' do
+            - number_field :protein_mg, value: recipe_ingredient.protein_mg.to_f, step: 'any', class: 'text-right'
+            - span 'mg'
+          - div class: 'col-sm-3' do
+            - number_field :fat_mg, value: recipe_ingredient.fat_mg.to_f, step: 'any', class: 'text-right'
+            - span 'mg'
+          - div class: 'col-sm-3' do
+            - number_field :carbohydrates_mg, value: recipe_ingredient.carbohydrates_mg.to_f, step: 'any', class: 'text-right'
+            - span 'mg'
+      - submit 'Ok'
