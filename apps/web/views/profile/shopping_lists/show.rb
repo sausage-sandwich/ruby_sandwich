@@ -6,6 +6,7 @@ module Web
       module ShoppingLists
         class Show
           include Web::View
+          include Web::Views::Profile::Recipes::Units
         end
       end
     end

@@ -15,6 +15,9 @@ module Web
               required(:id).filled(:int?)
               required(:shopping_list_item).schema do
                 required(:checked).filled(:bool?)
+                optional(:title).maybe(:str?)
+                optional(:quantity).maybe(:float?)
+                optional(:unit).maybe(:str?)
               end
             end
 
@@ -25,8 +28,7 @@ module Web
                 find_by_shopping_list(params[:shopping_list_id], params[:id])
 
               if params.valid? && item
-                checked = params[:shopping_list_item].fetch(:checked)
-                shopping_list_item_repo.update(item.id, checked: checked)
+                shopping_list_item_repo.update(item.id, params[:shopping_list_item])
               end
 
               redirect_to routes.profile_shopping_list_path(id: params[:shopping_list_id])
