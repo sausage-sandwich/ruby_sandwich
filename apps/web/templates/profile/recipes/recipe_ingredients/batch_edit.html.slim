@@ -4,7 +4,7 @@ ol.breadcrumb
   li.breadcrumb-item
     = link_to recipe.title, routes.profile_recipe_path(id: recipe.id)
   li.breadcrumb-item.active
-    = link_to recipe.title, routes.edit_profile_recipe_ingredients_path(recip_id: recipe.id)
+    = link_to 'Nutrition Information', routes.edit_profile_recipe_ingredients_path(recipe_id: recipe.id)
 
 .row
   .col-sm-10.offset-sm-1
