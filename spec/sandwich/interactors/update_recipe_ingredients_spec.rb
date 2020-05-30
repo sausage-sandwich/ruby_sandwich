@@ -7,7 +7,7 @@ RSpec.describe UpdateRecipeIngredients do
   let(:params) { [recipe_ingredient_params] }
   let(:recipe_ingredient_params) do
     {
-      recipe_ingredient_id: recipe_ingredient.id,
+      id: recipe_ingredient.id,
       fat_mg: 3000,
       carbohydrates_mg: 2000,
       protein_mg: 5000
