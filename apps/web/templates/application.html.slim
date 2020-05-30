@@ -1,35 +1,37 @@
 doctype html
-html lang="en"
+html lang='en'
   head
-    meta charset="utf-8"
-    meta content="IE=edge" http-equiv="X-UA-Compatible"
-    meta content="width=device-width, initial-scale=1" name="viewport"
-    meta content="" name="description"
-    meta content="" name="author"
+    meta charset='utf-8'
+    meta content='IE=edge' http-equiv='X-UA-Compatible'
+    meta content='width=device-width, initial-scale=1' name='viewport'
+    meta content='' name='description'
+    meta content='' name='author'
     = stylesheet 'application'
     = javascript 'application'
-    title Hello Sandwich!
+    title Бутерброд с колбасой
 
   body
     .container
       header.header
         nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-4 role="navigation"
-          = link_to "Sausage Sandwich", Web.routes.path(:recipes), class: 'navbar-brand'
+          = link_to 'Бутерброд с колбасой', Web.routes.path(:recipes), class: 'navbar-brand'
           .collapse.navbar-collapse
             ul.navbar-nav.mr-auto
               - if defined?(current_user) && current_user # TODO: inline 'signed_in?', move to a view helper
                 li.nav-item
-                  = link_to "Hello, #{current_user.name || current_user.email}", routes.profile_path, class: 'nav-link btn'
+                  = link_to "Привет, #{current_user.name || current_user.email}", routes.profile_path, class: 'nav-link btn'
                 li.nav-item
-                  = link_to 'Create Recipe', routes.new_profile_recipe_path, class: 'nav-link btn'
+                  = link_to 'Записать рецепт', routes.new_profile_recipe_path, class: 'nav-link btn'
+                li.nav-item
+                  = link_to 'Списки покупок', routes.profile_shopping_lists_path, class: 'nav-link btn'
                 li.nav-item
                   = form_for :session, Web.routes.path(:session), method: 'delete' do
-                    - submit 'Sign out', class: 'nav-link btn'
+                    - submit 'Выйти', class: 'nav-link btn'
               - else
                 li.nav-item
-                  = link_to 'Sign up', Web.routes.path(:new_user), class: 'nav-link btn'
+                  = link_to 'Зарегистрироваться', Web.routes.path(:new_user), class: 'nav-link btn'
                 li.nav-item
-                  = link_to 'Sign in', Web.routes.path(:new_session), class: 'nav-link btn'
+                  = link_to 'Войти', Web.routes.path(:new_session), class: 'nav-link btn'
 
-      main role="main"
+      main role='main'
         = yield

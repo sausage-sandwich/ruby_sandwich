@@ -32,6 +32,10 @@ module Web
           rescue ::Unit::ConversionError
             false
           end
+
+          def image_url(recipe)
+            recipe.image_url || 'recipe_placeholder.jpg'
+          end
         end
       end
     end

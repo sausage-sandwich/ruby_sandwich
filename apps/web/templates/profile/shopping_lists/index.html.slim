@@ -1,0 +1,10 @@
+.row
+  .col-md-8.offset-md-2
+    = form_for :shopping_list, routes.profile_shopping_lists_path, class: 'form-inline' do
+      - text_field :title, placeholder: 'New Shopping List', class: 'form-control'
+      - submit 'Create', class: 'btn btn-primary ml-2'
+
+    ul.list-group
+    - shopping_lists.each do |shopping_list|
+      li.list-group-item
+        = link_to shopping_list.title, routes.profile_shopping_list_path(id: shopping_list.id)

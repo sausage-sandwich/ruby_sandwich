@@ -1,8 +1,11 @@
 .row
   .col-md-8.offset-md-2
-    = form_for :recipe, routes.profile_recipes_path, values: { recipe: recipe } do
+    = form_for :recipe, routes.profile_recipes_path, values: { recipe: recipe }, enctype: 'multipart/form-data' do
       - label :title, class: 'control-label'
       - text_field :title, class: 'form-control'
+
+      - label :image, class: 'control-label'
+      - file_field :image, class: 'form-control'
 
       - label :ingredients, class: 'control-label'
 
