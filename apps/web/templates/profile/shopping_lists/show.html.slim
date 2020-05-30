@@ -12,6 +12,8 @@
       li.list-group-item
         = form_for :shopping_list_item, routes.profile_shopping_list_item_path(shopping_list_id: shopping_list.id, id: item.id), method: :patch do
           - check_box :checked, checked: item.checked, checked_value: 'true', unchecked_value: 'false'
+          - text_field :title, value: (item.title || item.ingredient.title)
+          - number_field :quantity, value: item.quantity.to_f
+          - select :unit, units, value: item.unit
           - submit :ok
-          - label [(item.title || item.ingredient.title), item.quantity.to_f, item.unit].compact.join(' ')
 
