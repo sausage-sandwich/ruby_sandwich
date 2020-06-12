@@ -4,7 +4,8 @@
       = recipe.title
 
 .row
-  img src=(recipe.image_url(:large) || asset_path('recipe_placeholder.jpg')) class='col-md-6'
+  .col-md-6
+    img src=(recipe.image_url(:large) || asset_path('recipe_placeholder.jpg')) class='w-100'
   .col-md-6
     = render partial: 'nutrition_facts', locals: { recipe: recipe }
 .row
