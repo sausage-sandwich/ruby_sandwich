@@ -7,5 +7,5 @@
       .card.mb-2
         img src=(recipe.image_url(:thumb) || asset_path('recipe_placeholder.jpg')) class='card-img-top'
         .card-body
-          h5.card-title.text-truncate
+          h6.card-title.text-truncate
             = link_to recipe.title, routes.profile_recipe_path(id: recipe.id)
