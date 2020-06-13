@@ -1,6 +1,4 @@
-h5
-  = 'Nutrition facts per 100 grams'
-  small = link_to 'calculate', routes.edit_profile_recipe_ingredients_path(recipe_id: recipe.id), class: 'font-weight-light text-secondary ml-1'
+h5 Nutrition facts per 100 grams
 - if nutrition_facts_showable?(recipe)
   ul.list-unstyled
     li
@@ -16,4 +14,4 @@ h5
       b Calories:
       =< calories(recipe.nutrition_facts.calories)
 - else
-  i Can't calculate nutrition facts: all units should be convertable to grams
+  b Can't calculate nutrition facts: all units should be convertable to grams
