@@ -1,0 +1,19 @@
+ru:
+  units:
+    g: g
+    kg: kg
+    piece: piece
+    ml: ml
+    l: l
+    pound: pound
+    ounce: ounce
+    gallon: gallon
+    quart: quart
+    pint: pint
+    cup: cup
+    fluid_ounce: fluid_ounce
+    tablespoon: tablespoon
+    teaspoon: teaspoon
+    glass: glass
+    handful: handful
+    pinch: pinch

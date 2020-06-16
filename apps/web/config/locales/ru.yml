@@ -1,0 +1,55 @@
+ru:
+  units:
+    g: г
+    kg: кг
+    pieces: шт
+    ml: мл
+    l: л
+    pound:
+      zero: фунтов
+      one: фунт
+      few: фунта
+      other: фунтов
+    ounce:
+      zero: унций
+      one: унция
+      few: унции
+      other: унций
+    gallon:
+      zero: галлонов
+      one: галлон
+      few: галлона
+      other: галлонов
+    quart:
+      zero: кварт
+      one: кварта
+      few: кварты
+      other: кварт
+    pint:
+      zero: пинт
+      one: пинта
+      few: пинты
+      other: пинт
+    cup:
+      zero: чашек
+      one: чашка
+      few: чашки
+      other: чашек
+    fluid_ounce:
+      zero: жидких унций
+      one: жидкая унция
+      few: жидких унции
+      other: жидких унций
+    tablespoon: ст. л
+    teaspoon: ч. л
+    glass: ст
+    handful:
+      zero: горстей
+      one: горсть
+      few: горсти
+      other: горстей
+    pinch:
+      zero: щепоток
+      one: щепотка
+      few: щепотки
+      other: щепоток

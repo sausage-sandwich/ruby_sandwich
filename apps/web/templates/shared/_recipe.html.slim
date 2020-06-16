@@ -17,7 +17,7 @@
           td.text-right.text-capitalize
             = recipe_ingredient.ingredient.title
           td
-            = display_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
+            = display_quantity(recipe_ingredient.quantity, I18n.t(recipe_ingredient.unit, scope: 'units', count: recipe_ingredient.quantity))
 
   .col-md-6
     h5 Instructions
