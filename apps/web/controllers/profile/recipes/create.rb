@@ -31,14 +31,18 @@ module Web
           end
 
           def call(params)
-            if params.valid?
-              result = CreateRecipe.new.call(params[:recipe].merge(user_id: current_user.id))
-              @recipe = result.recipe
+            return unless params.valid?
 
-              redirect_to routes.profile_recipe_path(id: @recipe.id) if result.success?
-            else
-              @recipe = params[:recipe]
-            end
+            result = create_recipe.call(params[:recipe].merge(user_id: current_user.id))
+            @recipe = result.recipe
+
+            redirect_to routes.profile_recipe_path(id: @recipe.id) if result.success?
+          end
+
+          private
+
+          def create_recipe
+            CreateRecipe.new
           end
         end
       end

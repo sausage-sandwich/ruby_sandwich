@@ -1,0 +1,30 @@
+= form_for :recipe, path, values: { recipe: recipe }, enctype: 'multipart/form-data', method: http_method do
+  - label :title, class: 'control-label'
+  - text_field :title, class: 'form-control'
+
+  - label :image, class: 'control-label'
+  - file_field :image, class: 'form-control'
+
+  - label :ingredients, class: 'control-label'
+
+  - div class: 'js-repeatable form-row' do
+    - fields_for_collection :recipe_ingredients do |i, recipe_ingredient|
+      - div class: 'js-repeatable-block form-group col-md-11' do
+        - div class: 'form-row' do
+          - div class: 'form-group col-md-7' do
+            - text_field :title, value: recipe_ingredient.ingredient.title, class: 'form-control '
+          - div class: 'form-group col-md-2' do
+            - number_field :quantity, value: recipe_ingredient.quantity.to_f, class: 'form-control', step: 'any'
+          - div class: 'form-group col-md-2'
+            - select :unit, units, value: recipe_ingredient.unit, class: 'form-control'
+          - div class: 'form-group col-md-1 mt-1 js-repeatable-delete-button'
+            - raw(render(partial: 'shared/delete'))
+    - div class: 'form-group col-md-1 js-repeatable-block-add-button mt-1' do
+      - raw(render(partial: 'shared/plus'))
+
+  - div class: 'form-group' do
+    - label :body, class: 'control-label'
+    - text_area :body, class: 'form-control', rows: 12
+
+  - div class: 'form-group' do
+    - submit 'Submit', class: 'btn btn-primary'

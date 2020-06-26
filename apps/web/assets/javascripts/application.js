@@ -16,6 +16,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addButton.addEventListener("click", function(e) {
       addBlock(e.target.closest(".js-repeatable"));
     }, false);
+
+    var deleteButtons = Array.from(container.getElementsByClassName("js-repeatable-delete-button"));
+    deleteButtons.forEach(function(input) {
+      input.addEventListener("click", function(e) {
+        deleteBlock(e.target.closest(".js-repeatable-block"));
+      })
+    })
   }
 
   function addBlock(container) {
@@ -23,6 +30,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var newNode = createNewNode(blocks);
     container.insertBefore(newNode, blocks[blocks.length - 1].nextSibling);
     newNode.querySelectorAll("input,select")[0].focus();
+  }
+
+  function deleteBlock(block) {
+    repeatableBlocks = block.closest(".js-repeatable").getElementsByClassName("js-repeatable-block");
+
+    if (repeatableBlocks.length > 1) {
+      block.remove();
+    }
   }
 
   function createNewNode(blocks) {
@@ -34,6 +49,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
       input.setAttribute("id", input.id.replace(firstItemIndex, newItemIndex));
       clearValue(input);
     })
+
+    deleteButton = newNode.getElementsByClassName("js-repeatable-delete-button")[0];
+    deleteButton.addEventListener("click", function(e) {
+      deleteBlock(e.target.closest(".js-repeatable-block"));
+    });
     return newNode;
   }
 

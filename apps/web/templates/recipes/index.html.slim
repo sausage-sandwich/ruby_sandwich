@@ -1,16 +1,4 @@
 .row
-  .col-md-12
-    .jumbotron
-      .h1.display-4 Привет!
-      p.lead Здесь можно записывать свои рецепты, делиться ими или найти что-нибудь интересное для себя
-      hr.my-4
-      p.lead
-        - if current_user
-          = link_to 'Записать рецепт', routes.new_profile_recipe_path, class: 'btn btn-primary btn-lg'
-        - else
-          = link_to 'Записать рецепт', routes.new_session_path, class: 'btn btn-primary btn-lg'
-
-.row
   - recipes.each do |recipe|
     .col-md-3
       .card.mb-2
