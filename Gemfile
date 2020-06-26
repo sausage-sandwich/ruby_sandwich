@@ -8,6 +8,7 @@ gem 'rake'
 
 gem 'bcrypt'
 gem 'dotenv', '~> 2.4'
+gem 'i18n'
 gem 'image_processing'
 gem 'pg'
 gem 'rollbar'
