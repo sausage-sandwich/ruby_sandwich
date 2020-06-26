@@ -271,6 +271,7 @@ DEPENDENCIES
   hanami (~> 1.3)
   hanami-model (~> 1.3)
   hanami-webconsole
+  i18n
   image_processing
   pg
   pry-byebug
