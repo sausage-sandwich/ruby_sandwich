@@ -12,9 +12,9 @@
       - div class: 'js-repeatable form-inline'
         - fields_for_collection :recipe_ingredients do |i, recipe_ingredient|
           - div class: 'js-repeatable-block' do
-            - text_field :title, value: recipe_ingredient.ingredient.title, class: 'form-control mb-2 mr-2'
-            - number_field :quantity, value: recipe_ingredient.quantity.to_f, class: 'form-control mb-2 mr-2', step: 'any'
-            - select :unit, units, value: recipe_ingredient.unit, class: 'form-control mb-2 mr-2'
+            - text_field :title, value: recipe_ingredient.ingredient.title, class: 'form-control mb-2 mr-2 col-md-6'
+            - number_field :quantity, value: recipe_ingredient.quantity.to_f, class: 'form-control mb-2 mr-2 col-md-2', step: 'any'
+            - select :unit, units, value: recipe_ingredient.unit, class: 'form-control mb-2 mr-2 col-md-2'
         - div 'Add', class: 'js-repeatable-block-add-button btn btn-warning mb-2 mr-2'
 
       - div class: 'form-group' do
