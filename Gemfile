@@ -7,12 +7,12 @@ gem 'hanami-model', '~> 1.3'
 gem 'rake'
 
 gem 'bcrypt'
-gem 'bootstrap', '~> 4.4.1'
 gem 'dotenv', '~> 2.4'
 gem 'image_processing'
 gem 'pg'
 gem 'rollbar'
 gem 'sass'
+gem 'sassc'
 gem 'shrine'
 gem 'slim'
 
