@@ -20,8 +20,7 @@ class CreateUser
   def secured_params(params)
     password = params.fetch(:password)
     password_digest = BCrypt::Password.create(password)
-
-    params.except(:password).merge(password_digest: password_digest)
+    params.slice(:email, :name).merge(password_digest: password_digest)
   end
 
   def user_repo
