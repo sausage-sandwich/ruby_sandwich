@@ -143,7 +143,8 @@ module Admin
         # Specify sources for assets
         #
         sources << [
-          'assets'
+          'assets',
+          Hanami.root.join('vendor', 'assets')
         ]
       end
 
