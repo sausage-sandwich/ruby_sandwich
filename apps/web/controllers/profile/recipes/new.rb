@@ -11,7 +11,7 @@ module Web
           expose :recipe
 
           def call(_params)
-            @recipe = Recipe.new(recipe_ingredients: [RecipeIngredient.new])
+            @recipe = Recipe.new(recipe_ingredients: [RecipeIngredient.new(ingredient: Ingredient.new)])
           end
         end
       end
