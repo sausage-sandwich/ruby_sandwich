@@ -1,0 +1,12 @@
+h2
+  | О проекте
+
+div
+  p.lead
+    | Бутерброд с колбасой - это удобный способ находить интересные рецепты и записывать свои. Он поможет следить за питанием и не забывать понравившиеся рецепты.
+div
+  - if current_user
+    = link_to 'Записать рецепт', routes.new_profile_recipe_path, class: 'btn btn-large btn-primary'
+  - else
+    = link_to 'Зарегистрироваться', routes.path(:new_user), class: 'btn btn-large btn-primary'
+

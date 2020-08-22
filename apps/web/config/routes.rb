@@ -30,3 +30,6 @@ get(
   to: 'controllers/profile/recipes/recipe_ingredients/batch_edit',
   as: :edit_profile_recipe_ingredients
 )
+
+# static
+get '/about', to: 'controllers/static/about'
