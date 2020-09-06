@@ -1,0 +1,19 @@
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.container {
+  padding-bottom: 100px;
+}
+
+.footer {
+  height: 100px;
+  min-width: 100%;
+  position: absolute;
+  bottom: 0;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
