@@ -14,6 +14,7 @@ html lang='en'
 
   body
     header.header
+    .page-container
       nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-4 role="navigation"
         = link_to 'Бутерброд с колбасой', Web.routes.path(:recipes), class: 'navbar-brand'
         .collapse.navbar-collapse
@@ -33,7 +34,10 @@ html lang='en'
                 = link_to 'Зарегистрироваться', Web.routes.path(:new_user), class: 'nav-link btn'
               li.nav-item
                 = link_to 'Войти', Web.routes.path(:new_session), class: 'nav-link btn'
+      .container
+        main role='main'
+          = yield
 
-    .container
-      main role='main'
-        = yield
+      footer.footer.bg-light
+        .text-muted
+          = 'Бутерброд с колбасой 2020'
