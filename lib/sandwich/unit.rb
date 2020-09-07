@@ -35,6 +35,10 @@ class Unit
     pound: CONVERSION_RATE.fetch(:pound).fetch(:quantity),
     ounce: CONVERSION_RATE.fetch(:ounce).fetch(:quantity)
   }.freeze
+  GREATER_UNITS = {
+    g: :kg,
+    ml: :l
+  }.freeze
 
   ConversionError = Class.new(StandardError)
 
@@ -49,7 +53,12 @@ class Unit
     metric = CONVERSION_RATE[unit.to_sym]
     return self unless metric
 
-    Unit.new(quantity * metric[:quantity], metric[:unit])
+    new_quantity = quantity * metric[:quantity]
+    if new_quantity > 1000 && GREATER_UNITS[metric[:unit]]
+      Unit.new(new_quantity / 1000, GREATER_UNITS[metric[:unit]])
+    else
+      Unit.new(new_quantity, metric[:unit])
+    end
   end
 
   def convert_to_grams
@@ -60,6 +69,6 @@ class Unit
   end
 
   def humanize
-    "#{quantity.to_s('F')} #{unit.to_s.split('_').join(' ')}"
+    "#{quantity.truncate(2).to_s('F')} #{I18n.t(unit, scope: 'units', count: quantity.to_i)}"
   end
 end

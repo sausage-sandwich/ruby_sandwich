@@ -62,3 +62,33 @@ document.addEventListener("DOMContentLoaded", function(event) {
     Array.from(input).forEach(function(option) { option.removeAttribute("selected") })
   }
 });
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  var visibilityToggleArea = Array.from(document.getElementsByClassName("js-visibility-toggle"));
+
+  visibilityToggleArea.forEach(toggleVisibility);
+
+  function toggleVisibility(table) {
+    var button = table.getElementsByClassName("js-visibility-toggle-button")[0];
+
+    button.addEventListener("click", function(_e) {
+      var visible = Array.from(table.getElementsByClassName("visible"));
+      var invisible = Array.from(table.getElementsByClassName("invisible"));
+
+      visible.forEach(function(el) { el.className = el.className.replace("visible", "invisible") })
+      invisible.forEach(function(el) { el.className = el.className.replace("invisible", "visible") })
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  var imperialMetricToggler = document.getElementsByClassName("js-metric-toggler")[0];
+
+  imperialMetricToggler.addEventListener("click", function(_e) {
+    if (imperialMetricToggler.textContent === "To metric") {
+      imperialMetricToggler.textContent = "To imperial"
+    } else {
+      imperialMetricToggler.textContent === "To metric"
+    };
+  })
+});

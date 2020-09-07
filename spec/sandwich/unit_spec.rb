@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe Unit do
+  before do
+    I18n.locale = :ru
+  end
+
   describe '#convert_to_metric' do
     subject(:converted_unit) { unit.convert_to_metric }
 
@@ -30,7 +34,7 @@ RSpec.describe Unit do
     let(:unit) { described_class.new(BigDecimal(10), :fluid_ounce) }
 
     it 'displays human unit' do
-      expect(humanized_unit).to eq '10.0 fluid ounce'
+      expect(humanized_unit).to eq '10.0 жидких унций'
     end
   end
 

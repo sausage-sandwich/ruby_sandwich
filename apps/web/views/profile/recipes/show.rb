@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
+require_relative '../../shared/display_unit'
+
 module Web
   module Views
     module Profile
       module Recipes
         class Show
           include Web::View
-
-          def display_quantity(quantity, unit)
-            unit = Unit.new(quantity, unit)
-            unit.convert_to_metric.humanize
-          end
+          include Web::Views::Shared::DisplayUnit
 
           # NOTE: find build-in function for this
           def text_with_newlines(text)
