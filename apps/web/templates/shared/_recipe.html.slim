@@ -10,14 +10,23 @@
     = render partial: 'shared/nutrition_facts', locals: { recipe: recipe }
 .row
   .col-md-6
-    h5 Ingredients
-    table.table.table-sm.table-striped
+    table.table.table-sm.table-striped.js-visibility-toggle
+      tr
+        td
+          h5
+            | Ingredients
+        td.text-right
+          .btn.btn-light.js-visibility-toggle-button.js-metric-toggler
+            | To metric
       - recipe.recipe_ingredients.each do |recipe_ingredient|
         tr
-          td.text-right.text-capitalize
+          td.text-capitalize
             = recipe_ingredient.ingredient.title
-          td
-            = display_quantity(recipe_ingredient.quantity, I18n.t(recipe_ingredient.unit, scope: 'units', count: recipe_ingredient.quantity))
+          td.text-right
+            span.visible
+              = display_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
+            span.invisible
+              = display_metric_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
 
   .col-md-6
     h5 Instructions

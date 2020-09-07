@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../units'
+require_relative '../../../shared/display_unit'
 
 module Web
   module Views
@@ -10,11 +11,6 @@ module Web
           class BatchEdit
             include Web::View
             include Web::Views::Profile::Recipes::Units
-
-            def display_quantity(quantity, unit)
-              unit = Unit.new(quantity, unit)
-              unit.convert_to_metric.humanize
-            end
           end
         end
       end
