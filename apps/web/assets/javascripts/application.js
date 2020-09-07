@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (imperialMetricToggler.textContent === "To metric") {
       imperialMetricToggler.textContent = "To imperial"
     } else {
-      imperialMetricToggler.textContent === "To metric"
+      imperialMetricToggler.textContent = "To metric"
     };
   })
 });
