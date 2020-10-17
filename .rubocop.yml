@@ -32,3 +32,6 @@ Layout/MultilineMethodCallIndentation:
 Layout/DotPosition:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#consistent-multi-line-chains'
   EnforcedStyle: trailing
+
+Layout/ArrayAlignment:
+  EnforcedStyle: with_fixed_indentation

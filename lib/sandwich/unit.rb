@@ -1,25 +1,9 @@
 # frozen_string_literal: true
 
 class Unit
-  UNITS = %w[
-    g
-    kg
-    pieces
-    ml
-    l
-    pound
-    ounce
-    gallon
-    quart
-    pint
-    cup
-    fluid_ounce
-    tablespoon
-    teaspoon
-    glass
-    handful
-    pinch
-  ].freeze
+  UNITS = %w[g kg pound ounce
+    ml l gallon quart pint cup fluid_ounce
+    tablespoon teaspoon glass handful pinch pieces].freeze
 
   CONVERSION_RATE = {
     gallon: { quantity: 4546.09, unit: :ml },
