@@ -52,35 +52,14 @@ class Unit
   end
 
   def convert_to_imperial
-    return self if TO_METRIC_CONVERSION_RATE.keys.include?(unit)
+    conversion_lambda = {
+      kg: -> { Unit.new((quantity * 1000 / pound_in_g), :pound) },
+      g: -> { g_to_imperial },
+      l: -> { l_to_imperial },
+      ml: -> { ml_to_imperial }
+    }[unit]
 
-    case unit
-    when :kg
-      Unit.new((quantity * 1000 / pound_in_g), :pound)
-    when :g
-      if quantity < pound_in_g
-        Unit.new((quantity / ounce_in_g), :ounce)
-      else
-        Unit.new((quantity / pound_in_g), :pound)
-      end
-    when :l
-      in_ml = quantity * 1000
-      if in_ml < gallon_in_ml
-        Unit.new((in_ml / pint_in_ml), :pint)
-      else
-        Unit.new((in_ml / gallon_in_ml), :gallon)
-      end
-    when :ml
-      if quantity >= 1000
-        Unit.new(quantity / 1000, :l).convert_to_imperial
-      elsif quantity > pint_in_ml
-        Unit.new((quantity / pint_in_ml), :pint)
-      else
-        Unit.new((quantity / fluid_ounce_in_ml), :fluid_ounce)
-      end
-    else
-      self
-    end
+    conversion_lambda ? conversion_lambda.call : self
   end
 
   def convert_to_grams
@@ -92,5 +71,34 @@ class Unit
 
   def humanize
     "#{quantity.truncate(2).to_s('F')} #{I18n.t(unit, scope: 'units', count: quantity.to_i)}"
+  end
+
+  private
+
+  def g_to_imperial
+    if quantity < pound_in_g
+      Unit.new((quantity / ounce_in_g), :ounce)
+    else
+      Unit.new((quantity / pound_in_g), :pound)
+    end
+  end
+
+  def l_to_imperial
+    in_ml = quantity * 1000
+    if in_ml < gallon_in_ml
+      Unit.new((in_ml / pint_in_ml), :pint)
+    else
+      Unit.new((in_ml / gallon_in_ml), :gallon)
+    end
+  end
+
+  def ml_to_imperial
+    if quantity >= 1000
+      Unit.new(quantity / 1000, :l).convert_to_imperial
+    elsif quantity > pint_in_ml
+      Unit.new((quantity / pint_in_ml), :pint)
+    else
+      Unit.new((quantity / fluid_ounce_in_ml), :fluid_ounce)
+    end
   end
 end
