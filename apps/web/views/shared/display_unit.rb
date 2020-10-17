@@ -9,6 +9,11 @@ module Web
           unit.convert_to_metric.humanize
         end
 
+        def display_imperial_quantity(quantity, unit)
+          unit = Unit.new(quantity, unit)
+          unit.convert_to_imperial.humanize
+        end
+
         def display_quantity(quantity, unit)
           unit = Unit.new(quantity, unit)
           unit.humanize
