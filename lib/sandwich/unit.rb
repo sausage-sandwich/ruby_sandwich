@@ -52,12 +52,7 @@ class Unit
   end
 
   def convert_to_imperial
-    conversion_lambda = {
-      kg: -> { Unit.new((quantity * 1000 / pound_in_g), :pound) },
-      g: -> { g_to_imperial },
-      l: -> { l_to_imperial },
-      ml: -> { ml_to_imperial }
-    }[unit]
+    conversion_lambda = to_imperial_conversion_lambda(unit)
 
     conversion_lambda ? conversion_lambda.call : self
   end
@@ -75,6 +70,19 @@ class Unit
 
   private
 
+  def to_imperial_conversion_lambda(unit)
+    {
+      kg: -> { kg_to_imperial },
+      g: -> { g_to_imperial },
+      l: -> { l_to_imperial },
+      ml: -> { ml_to_imperial }
+    }[unit]
+  end
+
+  def kg_to_imperial
+    Unit.new((quantity * 1000 / pound_in_g), :pound)
+  end
+
   def g_to_imperial
     if quantity < pound_in_g
       Unit.new((quantity / ounce_in_g), :ounce)
@@ -85,6 +93,7 @@ class Unit
 
   def l_to_imperial
     in_ml = quantity * 1000
+
     if in_ml < gallon_in_ml
       Unit.new((in_ml / pint_in_ml), :pint)
     else
