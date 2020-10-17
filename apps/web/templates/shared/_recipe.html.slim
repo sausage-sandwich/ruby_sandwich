@@ -8,25 +8,28 @@
     img src=(recipe.image_url(:large) || asset_path('recipe_placeholder.jpg')) class='w-100'
   .col-md-6
     = render partial: 'shared/nutrition_facts', locals: { recipe: recipe }
-.row
-  .col-md-6
-    table.table.table-sm.table-striped.js-visibility-toggle
-      tr
-        td
-          h5
-            | Ingredients
-        td.text-right
-          .btn.btn-light.js-visibility-toggle-button.js-metric-toggler
-            | To metric
-      - recipe.recipe_ingredients.each do |recipe_ingredient|
-        tr
-          td.text-capitalize
-            = recipe_ingredient.ingredient.title
-          td.text-right
-            span.visible
-              = display_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
-            span.invisible
-              = display_metric_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
+.row.mt-3
+  .col-md-6.js-visibility-toggle
+    .row.mb-3
+      .col-md-6
+        h5
+          | Ingredients
+      .col-md-6
+        .text-right
+          span.btn.btn-light.js-visibility-toggle-button.js-metric-toggler
+            | To Imperial
+    .row
+      .col-md-12
+        table.table.table-sm.table-striped.table-bordered
+          - recipe.recipe_ingredients.each do |recipe_ingredient|
+            tr
+              td.text-capitalize
+                = recipe_ingredient.ingredient.title
+              td.text-right
+                span.visible
+                  = display_metric_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
+                span.invisible
+                  = display_imperial_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
 
   .col-md-6
     h5 Instructions
