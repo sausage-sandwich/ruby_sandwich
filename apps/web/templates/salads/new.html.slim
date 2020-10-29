@@ -1,0 +1,9 @@
+.row
+  .col-md-6.offset-md-3
+    h4 Генератор салатов
+.row
+  .col-md-6.offset-md-3
+    = form_for :salad, routes.salads_path do
+      - categories.each do |category|
+        = check_box category
+      - submit 'Сгенерировать', class: 'btn btn-success'
