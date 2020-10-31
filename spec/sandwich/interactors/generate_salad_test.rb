@@ -6,6 +6,7 @@ RSpec.describe GenerateSalad do
   let(:available_ingredients) { described_class::INGREDIENTS.values.flatten }
 
   it { expect(generate_salad).to be_success }
+
   it 'generates salad' do
     expect(available_ingredients).to include(*generate_salad.ingredients)
   end
