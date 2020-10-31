@@ -28,7 +28,7 @@ RSpec.describe GenerateSalad do
     let(:categories) { [] }
 
     it 'construct within selected categories' do
-      expect(generate_salad.ingredients).to eq []
+      expect(generate_salad.ingredients).to be_empty
     end
   end
 end
