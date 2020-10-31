@@ -17,3 +17,12 @@ ru:
     glass: glass
     handful: handful
     pinch: pinch
+
+  domain:
+    recipes:
+      ingredients:
+        categories:
+          crunchy: Crunchy
+          sweet_or_sour: Sweet or sour
+          spicy: Spicy
+          protein: Protein
