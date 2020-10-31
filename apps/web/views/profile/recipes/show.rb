@@ -34,6 +34,10 @@ module Web
           def image_url(recipe)
             recipe.image_url || 'recipe_placeholder.jpg'
           end
+
+          def can_edit_recipe?(recipe, user)
+            user && recipe.user_id == user.id
+          end
         end
       end
     end
