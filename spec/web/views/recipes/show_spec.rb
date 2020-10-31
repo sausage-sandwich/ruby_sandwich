@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Web::Views::Recipes::Show, type: :view do
-  let(:exposures) { { recipe: recipe, current_user: nil, format: :html } }
+  let(:exposures) { { recipe: recipe, current_user: nil, params: {}, format: :html } }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/recipes/show.html.slim') }
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
