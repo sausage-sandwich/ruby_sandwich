@@ -2,6 +2,9 @@
   .col-md-12
     h3.text-capitalize
       = recipe.title
+      small.text-muted
+        - if can_edit_recipe?(recipe, current_user)
+          = link_to 'Редактировать', routes.edit_profile_recipe_path(recipe.id), class: 'btn btn-link btn-sm'
 
 .row
   .col-md-6
