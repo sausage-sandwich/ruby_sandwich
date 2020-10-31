@@ -29,6 +29,10 @@ module Web
         rescue ::Unit::ConversionError
           false
         end
+
+        def can_edit_recipe?(recipe, user)
+          user && recipe.user_id == user.id
+        end
       end
     end
   end
