@@ -1,0 +1,19 @@
+.row
+  .col-md-6.offset-md-3
+    h4 Генератор салатов
+
+.row
+  .col-md-6.offset-md-3
+    ul.list-unstyled
+      - salad.ingredients.each do |ingredient|
+        li
+          b= ingredient
+
+.row
+  .col-md-6.offset-md-3
+    = form_for :salad, routes.salad_path, method: :get do
+      - categories.each do |category|
+        - div class: 'form-check' do
+          = check_box category, class: 'form-check-input', checked: selected_categories.include?(category)
+          = label category, class: 'form-check-label'
+      - submit 'Сгенерировать еще', class: 'btn btn-success'

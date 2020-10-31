@@ -2,8 +2,8 @@
 
 module Web
   module Views
-    module Salads
-      class New
+    module Salad
+      class Show
         include Web::View
       end
     end
