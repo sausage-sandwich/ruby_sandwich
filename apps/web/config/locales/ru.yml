@@ -53,3 +53,12 @@ ru:
       one: щепотка
       few: щепотки
       other: щепоток
+
+  domain:
+    recipes:
+      ingredients:
+        categories:
+          crunchy: Хрустящее
+          sweet_or_sour: Сладкое или кислое
+          spicy: Пикантное
+          protein: Белковое

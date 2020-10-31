@@ -19,6 +19,8 @@ html lang='en'
         = link_to 'Бутерброд с колбасой', Web.routes.path(:recipes), class: 'navbar-brand'
         .collapse.navbar-collapse
           ul.navbar-nav.mr-auto
+            li.nav-item
+              = link_to 'Генератор салатов', routes.salad_path, class: 'nav-link btn'
             - if defined?(current_user) && current_user # TODO: inline 'signed_in?', move to a view helper
               li.nav-item
                 = link_to "Привет, #{current_user.name || current_user.email}", routes.profile_path, class: 'nav-link btn'
