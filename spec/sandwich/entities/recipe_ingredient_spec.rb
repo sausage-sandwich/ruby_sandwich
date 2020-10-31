@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# frozen_string_literal: true
-
 RSpec.describe RecipeIngredient, type: :entity do
   describe '#nutrition_facts_per_quantity' do
     subject(:nutrition_facts_per_quantity) { recipe_ingredient.nutrition_facts_per_quantity }
