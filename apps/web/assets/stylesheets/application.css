@@ -20,3 +20,26 @@
 .invisible {
   display: none;
 }
+
+.bg-main {
+  background-color: #619936;
+}
+
+.text-white {
+  color: #FFFFFF;
+}
+
+.nav-link {
+  color: #FFFFFF;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  color: #FFFFFF;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
