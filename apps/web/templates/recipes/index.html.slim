@@ -1,8 +1,8 @@
 .row
   - recipes.each do |recipe|
     .col-md-3
-      .card.mb-2
-        img src=(recipe.image_url(:thumb) || asset_path('recipe_placeholder.jpg')) class='card-img-top'
-        .card-body
-          h6.card-title.text-truncate
-            = link_to recipe.title, Web.routes.path(:recipe, id: recipe.id)
+      a href=Web.routes.path(:recipe, id: recipe.id)
+        .card.mb-2
+          img src=(recipe.image_url(:thumb) || asset_path('recipe_placeholder.jpg')) class='card-img'
+          .card-img-overlay.text-truncate.text-white
+            = recipe.title
