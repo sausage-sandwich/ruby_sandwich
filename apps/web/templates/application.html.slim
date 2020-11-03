@@ -15,31 +15,33 @@ html lang='en'
   body
     header.header
     .page-container
-      nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-4 role="navigation"
-        = link_to 'Бутерброд с колбасой', Web.routes.path(:recipes), class: 'navbar-brand'
+      nav.navbar.navbar-expand-lg.bg-main.mb-4 role="navigation"
+        .navbar-header
+          = link_to 'Бутерброд с колбасой', Web.routes.path(:recipes), class: 'navbar-brand nav-link'
         .collapse.navbar-collapse
           ul.navbar-nav.mr-auto
             li.nav-item
               = link_to 'Генератор салатов', routes.salad_path, class: 'nav-link btn'
             - if defined?(current_user) && current_user # TODO: inline 'signed_in?', move to a view helper
               li.nav-item
-                = link_to "Привет, #{current_user.name || current_user.email}", routes.profile_path, class: 'nav-link btn'
-              li.nav-item
                 = link_to 'Записать рецепт', routes.new_profile_recipe_path, class: 'nav-link btn'
               li.nav-item
                 = link_to 'Списки покупок', routes.profile_shopping_lists_path, class: 'nav-link btn'
+          ul.navbar-nav
+            - if defined?(current_user) && current_user # TODO: inline 'signed_in?', move to a view helper
+              li.nav-item
+                = link_to "Привет, #{current_user.name || current_user.email}", routes.profile_path, class: 'nav-link'
               li.nav-item
                 = form_for :session, Web.routes.path(:session), method: 'delete' do
-                  - submit 'Выйти', class: 'nav-link btn'
+                  - submit 'Выйти', class: 'nav-link btn-link'
             - else
               li.nav-item
                 = link_to 'Зарегистрироваться', Web.routes.path(:new_user), class: 'nav-link btn'
               li.nav-item
-                = link_to 'Войти', Web.routes.path(:new_session), class: 'nav-link btn'
+                = link_to 'Войти', Web.routes.path(:new_session), class: 'nav-link btn-link'
       .container
         main role='main'
           = yield
 
-      footer.footer.bg-light
-        .text-muted
-          = 'Бутерброд с колбасой 2020'
+      footer.footer.bg-main.text-white
+        = 'Бутерброд с колбасой 2020'
