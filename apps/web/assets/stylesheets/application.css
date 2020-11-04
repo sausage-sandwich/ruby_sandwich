@@ -57,4 +57,9 @@
   top: auto;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 0 0 5px 5px;
+  padding: 0.6rem;
+}
+
+.recipe-card {
+  margin: 15px 0 15px 0;
 }

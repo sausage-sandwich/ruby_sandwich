@@ -1,0 +1,6 @@
+.recipe-card
+  a href=Web.routes.path(:recipe, id: recipe.id)
+    .card
+      img src=(recipe.image_url(:thumb) || asset_path('recipe_placeholder.jpg')) class='card-img'
+      .card-img-overlay.text-truncate.text-white
+        = recipe.title
