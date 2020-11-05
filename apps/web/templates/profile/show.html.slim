@@ -2,11 +2,8 @@
   .col-md-4
     h4 Мои рецепты
 
-.row
-  - recipes.each do |recipe|
-    .col-md-3
-      a href=routes.profile_recipe_path(id: recipe.id)
-        .card.mb-2
-          img src=(recipe.image_url(:thumb) || asset_path('recipe_placeholder.jpg')) class='card-img'
-          .card-img-overlay.text-truncate.text-white
-            = recipe.title
+- recipes.to_a.each_slice(4) do |group|
+  .row
+    - group.each do |recipe|
+      .col-lg-3
+        = render partial: 'shared/recipes/small_card', locals: { recipe: recipe }
