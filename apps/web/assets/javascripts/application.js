@@ -83,12 +83,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 document.addEventListener("DOMContentLoaded", function(event) {
   var imperialMetricToggler = document.getElementsByClassName("js-metric-toggler")[0];
+  var initialText = imperialMetricToggler.textContent;
+  var alternativeText = imperialMetricToggler.dataset.alternativeText;
 
   imperialMetricToggler.addEventListener("click", function(_e) {
-    if (imperialMetricToggler.textContent === "To metric") {
-      imperialMetricToggler.textContent = "To imperial"
+    if (imperialMetricToggler.textContent === alternativeText) {
+      imperialMetricToggler.textContent = initialText
     } else {
-      imperialMetricToggler.textContent = "To metric"
+      imperialMetricToggler.textContent = alternativeText
     };
   })
 });

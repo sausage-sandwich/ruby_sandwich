@@ -63,3 +63,19 @@
 .recipe-card {
   margin: 15px 0 15px 0;
 }
+
+.nutrition-facts {
+  border: 2px solid #619936;
+  border-radius: 5px;
+  line-height: 2;
+}
+
+.border-main {
+  border-color: #619936!important;
+}
+
+.text-h5 {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  font-weight: 500;
+}

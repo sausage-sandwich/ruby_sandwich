@@ -1,17 +1,24 @@
-h5 Nutrition facts per 100 grams
-- if nutrition_facts_showable?(recipe)
-  ul.list-unstyled
-    li
-      b Cabrohydrates:
-      =< nutrient(recipe.nutrition_facts.carbohydrates_mg)
-    li
-      b Fat:
-      =< nutrient(recipe.nutrition_facts.fat_mg)
-    li
-      b Protein:
-      =< nutrient(recipe.nutrition_facts.protein_mg)
-    li
-      b Calories:
-      =< calories(recipe.nutrition_facts.calories)
-- else
-  b Can't calculate nutrition facts: all units should be convertable to grams
+.nutrition-facts
+  - if !nutrition_facts_showable?(recipe)
+    table.w-100.text-center.table-md
+      tr
+        td.w-25.border-right.border-main
+          b Calories
+        td.w-25.border-right.border-main
+          | Carbs
+        td.w-25.border-right.border-main
+          | Fat
+        td.w-25
+          | Protein
+      tr.border-top.border-main
+        td.w-25.border-right.border-main
+          b =< calories(recipe.nutrition_facts.calories)
+        td.w-25.border-right.border-main
+          =< nutrient(recipe.nutrition_facts.carbohydrates_mg)
+        td.w-25.border-right.border-main
+          =< nutrient(recipe.nutrition_facts.fat_mg)
+        td.w-25
+          =< nutrient(recipe.nutrition_facts.protein_mg)
+  - else
+    .ml-2
+      i = I18n.t('no_nutrition_facts_yet', scope: 'domain.recipes.nutrition_facts')

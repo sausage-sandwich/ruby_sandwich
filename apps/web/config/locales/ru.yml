@@ -54,6 +54,15 @@ ru:
       few: щепотки
       other: щепоток
 
+  edit: Редактировать
+
+  views:
+    recipe:
+      show:
+        ingredients: Ингредиенты
+        to_imperial: В имперскую систему
+        to_metric: В метрическую систему
+
   domain:
     recipes:
       ingredients:
@@ -62,3 +71,5 @@ ru:
           sweet_or_sour: Сладкое или кислое
           spicy: Пикантное
           protein: Белковое
+      nutrition_facts:
+        no_nutrition_facts_yet: Мы пока не рассчитали пищевую ценность для этого рецепта
