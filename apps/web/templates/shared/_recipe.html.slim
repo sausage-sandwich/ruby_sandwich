@@ -10,7 +10,7 @@
             = link_to I18n.t('edit'), routes.edit_profile_recipe_path(recipe.id), class: 'btn btn-link btn-sm small text-muted'
     .row
       .col-md-12
-        = render partial: 'shared/nutrition_facts', locals: { recipe: recipe }
+        = render partial: 'shared/nutrition_facts', locals: { recipe: recipe, current_user: current_user }
 
     .row.mt-3
       .col-md-12.js-visibility-toggle

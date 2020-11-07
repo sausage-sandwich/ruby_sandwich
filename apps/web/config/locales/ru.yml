@@ -55,6 +55,8 @@ ru:
       other: щепоток
 
   edit: Редактировать
+  calculate: Рассчитать
+  save: Сохранить
 
   views:
     recipe:
@@ -62,6 +64,16 @@ ru:
         ingredients: Ингредиенты
         to_imperial: В имперскую систему
         to_metric: В метрическую систему
+      form:
+        calculate_nutrition_info: Рассчитать пищевую ценность
+    recipes:
+      recipe_ingredients:
+        batch_edit:
+          title: Ингредиент
+          quantity: Количество
+          protein_per_100_g: Белков на 100 г
+          fat_per_100_g: Жиров на 100 г
+          carbs_per_100_g: Углеводов на 100 г
 
   domain:
     recipes:
@@ -73,3 +85,7 @@ ru:
           protein: Белковое
       nutrition_facts:
         no_nutrition_facts_yet: Мы пока не рассчитали пищевую ценность для этого рецепта
+        calories: Калорийность
+        protein: Белки
+        fat: Жиры
+        carbs: Углеводы
