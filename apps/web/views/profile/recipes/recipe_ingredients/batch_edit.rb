@@ -10,6 +10,7 @@ module Web
         module RecipeIngredients
           class BatchEdit
             include Web::View
+            include Web::Views::Shared::DisplayUnit
             include Web::Views::Profile::Recipes::Units
           end
         end

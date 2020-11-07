@@ -3,22 +3,26 @@
     table.w-100.text-center.table-md
       tr
         td.w-25.border-right.border-main
-          b Calories
+          b = I18n.t('calories', scope: 'domain.recipes.nutrition_facts')
         td.w-25.border-right.border-main
-          | Carbs
+          = I18n.t('protein', scope: 'domain.recipes.nutrition_facts')
         td.w-25.border-right.border-main
-          | Fat
+          = I18n.t('fat', scope: 'domain.recipes.nutrition_facts')
         td.w-25
-          | Protein
+          = I18n.t('carbs', scope: 'domain.recipes.nutrition_facts')
       tr.border-top.border-main
         td.w-25.border-right.border-main
           b =< calories(recipe.nutrition_facts.calories)
         td.w-25.border-right.border-main
-          =< nutrient(recipe.nutrition_facts.carbohydrates_mg)
+          =< nutrient(recipe.nutrition_facts.protein_mg)
         td.w-25.border-right.border-main
           =< nutrient(recipe.nutrition_facts.fat_mg)
         td.w-25
-          =< nutrient(recipe.nutrition_facts.protein_mg)
+          =< nutrient(recipe.nutrition_facts.carbohydrates_mg)
   - else
     .ml-2
-      i = I18n.t('no_nutrition_facts_yet', scope: 'domain.recipes.nutrition_facts')
+      i
+        = I18n.t('no_nutrition_facts_yet', scope: 'domain.recipes.nutrition_facts')
+        - if can_edit_recipe?(recipe, current_user)
+          | &nbsp;
+          = link_to "(#{I18n.t('calculate')})", routes.edit_profile_recipe_ingredients_path(recipe.id), class: 'small text-muted'
