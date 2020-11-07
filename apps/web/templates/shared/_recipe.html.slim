@@ -1,47 +1,44 @@
 .row
-  .col-md-12
-    h3.text-capitalize
-      = recipe.title
-      small.text-muted
-        - if can_edit_recipe?(recipe, current_user)
-          = link_to 'Редактировать', routes.edit_profile_recipe_path(recipe.id), class: 'btn btn-link btn-sm'
-
-.row
   .col-md-6
-    img src=(recipe.image_url(:large) || asset_path('recipe_placeholder.jpg')) class='w-100'
+    img src=(recipe.image_url(:large) || asset_path('recipe_placeholder.jpg')) class='w-100 card-img'
   .col-md-6
-    = render partial: 'shared/nutrition_facts', locals: { recipe: recipe }
-.row.mt-3
-  .col-md-6.js-visibility-toggle
-    .row.mb-3
-      .col-md-6
-        h5
-          | Ingredients
-      .col-md-6
-        .text-right
-          span.btn.btn-light.js-visibility-toggle-button.js-metric-toggler
-            | To Imperial
-    .row.mb-3
-      .col-md-6
-        h5 Scale
-      .col-md-6
-        .text-right
-          = form_for :recipe, routes.recipe_path(recipe.id), method: :get do
-            - select :scale, [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5].each_with_object({}) { |v, memo| memo[v] = v }, value: params.dig(:recipe, :scale)
-            - submit :ok
     .row
       .col-md-12
-        table.table.table-sm.table-striped.table-bordered
-          - recipe.recipe_ingredients.each do |recipe_ingredient|
-            tr
-              td.text-capitalize
-                = recipe_ingredient.ingredient.title
-              td.text-right
-                span.visible
-                  = display_metric_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
-                span.invisible
-                  = display_imperial_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
+        h2.text-capitalize
+          = recipe.title
+          - if can_edit_recipe?(recipe, current_user)
+            = link_to I18n.t('edit'), routes.edit_profile_recipe_path(recipe.id), class: 'btn btn-link btn-sm small text-muted'
+    .row
+      .col-md-12
+        = render partial: 'shared/nutrition_facts', locals: { recipe: recipe }
 
-  .col-md-6
+    .row.mt-3
+      .col-md-12.js-visibility-toggle
+        .row
+          .col-md-8
+            span.text-h5
+              = I18n.t('views.recipe.show.ingredients')
+            | &nbsp;
+            span.text-muted.small.js-visibility-toggle-button.js-metric-toggler data-alternative-text="(#{I18n.t('views.recipe.show.to_metric')})"
+              = "(#{I18n.t('views.recipe.show.to_imperial')})"
+          .col-md-4
+            .text-right
+              = form_for :recipe, routes.recipe_path(recipe.id), method: :get do
+                - select :scale, [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5].each_with_object({}) { |v, memo| memo[v] = v }, value: params.dig(:recipe, :scale)
+                - submit :ok
+        .row
+          .col-md-12
+            table.table-sm.table-striped.table-borderless.w-100
+              - recipe.recipe_ingredients.each do |recipe_ingredient|
+                tr
+                  td.text-capitalize
+                    = recipe_ingredient.ingredient.title
+                  td.text-right
+                    span.visible
+                      = display_metric_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
+                    span.invisible
+                      = display_imperial_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
+
+  .col-md-12
     h5 Instructions
     = text_with_newlines(recipe.body)
