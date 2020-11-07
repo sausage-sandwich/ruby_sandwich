@@ -1,0 +1,16 @@
+.row
+  h1 Users
+.row
+  .col-md-12
+    table.table.table-striped
+      tr
+        th id
+        th name
+        th email
+        th created at
+      - users.each do |user|
+        tr
+          td = user.id
+          td = user.name
+          td = user.email
+          td = user.created_at
