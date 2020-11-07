@@ -8,14 +8,15 @@ html
     = favicon
 
   body
-    .container
-      header.header
-        nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-4 role="navigation"
-          .container
-            .collapse.navbar-collapse
-              .navbar-nav
-                = link_to 'Sudo Sandwich', Admin.routes.path(:root), class: 'navbar-brand'
-                = link_to 'Ingredients ', Admin.routes.path(:ingredients), class: 'btn btn-dark'
+    header.header
+      nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-4 role="navigation"
+        .container
+          .collapse.navbar-collapse
+            .navbar-nav
+              = link_to 'Sudo Sandwich', Admin.routes.path(:root), class: 'navbar-brand'
+              = link_to 'Ingredients', Admin.routes.path(:ingredients), class: 'nav-link'
+              = link_to 'Users', Admin.routes.path(:users), class: 'nav-link'
 
+    .container
       main role="main"
         = yield
