@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 RSpec.describe Admin::Controllers::Ingredients::Update, type: :action do
+  it_behaves_like 'non admin user in admin controllers'
+
   let(:action) { described_class.new }
-  let(:params) { Hash[id: 1, ingredient: {}] }
+  let(:params) { { id: 1, ingredient: {} } }
 
-  it 'redirects to' do
-    response = action.call(params)
+  context 'when admin signed in' do
+    include_context 'signed in admin'
 
-    expect(response[0]).to eq 302
+    it 'is successful' do
+      expect(subject[0]).to eq 302
+    end
   end
 end
