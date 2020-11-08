@@ -197,5 +197,16 @@ RSpec.describe Unit do
     it_behaves_like "can't be converted to grams", :quart
     it_behaves_like "can't be converted to grams", :pint
     it_behaves_like "can't be converted to grams", :fluid_ounce
+
+    context 'when conversion rates given' do
+      subject(:in_grams) { described_class.new(2, :pinch, { pinch: 10 }).convert_to_grams }
+
+      it 'uses given rates to convert to grams' do
+        expect(in_grams).to have_attributes(
+          quantity: 20,
+          unit: :g
+        )
+      end
+    end
   end
 end

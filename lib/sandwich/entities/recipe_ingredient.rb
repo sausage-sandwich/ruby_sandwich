@@ -10,7 +10,13 @@ class RecipeIngredient < Hanami::Entity
   end
 
   def quantity_in_grams
-    Unit.new(quantity, unit).convert_to_grams.quantity
+    Unit.new(quantity, unit, conversion_rates).convert_to_grams.quantity
+  end
+
+  def conversions_mg
+    (ingredient.conversions || []).each_with_object({}) do |conversion, memo|
+      memo[conversion.unit.to_sym] = conversion.weight_mg
+    end
   end
 
   private
