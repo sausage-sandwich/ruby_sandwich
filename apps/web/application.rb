@@ -251,6 +251,7 @@ module Web
       #
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
       controller.prepare do
+        include Infrastructure::Authentication
         include Web::Controllers::Authentication
       end
 
