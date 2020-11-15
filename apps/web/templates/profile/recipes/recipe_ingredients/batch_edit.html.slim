@@ -3,34 +3,32 @@
 .row
   .col-md-12
     = form_for :recipe, routes.profile_recipe_ingredients_path(recipe_id: recipe.id), values: { recipe: recipe } do
-      - table class: 'table-sm table-borderless table-striped w-100' do
-        - tr do
-          - th do
+      - table class: 'table-sm table-borderless table-striped w-100'
+        - tr
+          - th
             - I18n.t('title', scope: 'views.recipes.recipe_ingredients.batch_edit')
-          - th do
-            - I18n.t('quantity', scope: 'views.recipes.recipe_ingredients.batch_edit')
-          - th do
+          - th
             - I18n.t('protein_per_100_g', scope: 'views.recipes.recipe_ingredients.batch_edit')
-          - th do
+          - th
             - I18n.t('fat_per_100_g', scope: 'views.recipes.recipe_ingredients.batch_edit')
-          - th do
+          - th
             - I18n.t('carbs_per_100_g', scope: 'views.recipes.recipe_ingredients.batch_edit')
         - fields_for_collection :recipe_ingredients do |i, recipe_ingredient|
-          - tr do
-            - td do
+          - tr
+            - td
               - number_field :id, hidden: true
-              - text_field :title, hidden: true
               = label recipe_ingredient.ingredient.title
-            - td do
-              = label display_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
-              - number_field :quantity, value: recipe_ingredient.quantity.to_f, hidden: true
-            - td do
-              - number_field :protein_mg, value: recipe_ingredient.protein_mg.to_f, step: 'any', class: 'text-right'
-              - span 'mg'
-            - td do
-              - number_field :fat_mg, value: recipe_ingredient.fat_mg.to_f, step: 'any', class: 'text-right'
-              - span 'mg'
-            - td do
-              - number_field :carbohydrates_mg, value: recipe_ingredient.carbohydrates_mg.to_f, step: 'any', class: 'text-right'
-              - span 'mg'
+              - if Unit::TRIVIAL_UNITS.include?(recipe_ingredient.unit)
+                = label "(#{I18n.t('in_1_unit_of_ingredient', unit: I18n.t(recipe_ingredient.unit, scope: 'units', count: 1), scope: 'views.recipes.recipe_ingredients.batch_edit')}"
+                - number_field :unit_g, value: display_g(recipe_ingredient.unit_mg), step: 'any', class: 'text-right small-number-field'
+                - span "#{I18n.t('g', scope: 'units', count: 1)})"
+            - td
+              - number_field :protein_g, value: display_g(recipe_ingredient.protein_mg), step: 'any', class: 'text-right small-number-field'
+              - span I18n.t('g', scope: 'units', count: 1)
+            - td
+              - number_field :fat_g, value: display_g(recipe_ingredient.fat_mg), step: 'any', class: 'text-right small-number-field'
+              - span I18n.t('g', scope: 'units', count: 1)
+            - td
+              - number_field :carbohydrates_g, value: display_g(recipe_ingredient.carbohydrates_mg), step: 'any', class: 'text-right small-number-field'
+              - span I18n.t('g', scope: 'units', count: 1)
       - submit I18n.t('save'), class: 'btn btn-primary'

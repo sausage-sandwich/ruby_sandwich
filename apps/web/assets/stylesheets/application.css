@@ -79,3 +79,7 @@
   line-height: 1.2;
   font-weight: 500;
 }
+
+.small-number-field {
+  width: 100px;
+}

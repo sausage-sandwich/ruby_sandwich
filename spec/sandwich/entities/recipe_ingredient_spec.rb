@@ -20,27 +20,23 @@ RSpec.describe RecipeIngredient, type: :entity do
     end
   end
 
-  describe '#conversion_mg' do
-    subject(:conversion_mg) { recipe_ingredient.conversion_mg }
+  describe '#conversions_mg' do
+    subject(:conversions_mg) { recipe_ingredient.conversions_mg }
 
     let(:recipe_ingredient) do
-      RecipeIngredient.new(ingredient: carrot, quantity: 200, unit: 'g')
+      RecipeIngredient.new(ingredient: carrot, quantity: 2, unit: 'handful', unit_mg: 10_000)
     end
     let(:carrot) do
       Ingredient.new(
         title: 'Carrot',
         carbohydrates_mg: 6_900,
         fat_mg: 1_000,
-        protein_mg: 1_300,
-        conversions: [conversion]
+        protein_mg: 1_300
       )
-    end
-    let(:conversion) do
-      IngredientConversion.new(weight_mg: 10_000, unit: :handful)
     end
 
     it do
-      expect(conversion_mg).to eq(handful: 10_000)
+      expect(conversions_mg).to eq(handful: 10_000)
     end
   end
 end

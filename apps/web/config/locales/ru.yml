@@ -1,5 +1,6 @@
 ru:
   units:
+    mg: мг
     g: г
     kg: кг
     pieces: шт
@@ -71,9 +72,11 @@ ru:
         batch_edit:
           title: Ингредиент
           quantity: Количество
+          unit_in_mg: Вес 1 единицы
           protein_per_100_g: Белков на 100 г
           fat_per_100_g: Жиров на 100 г
           carbs_per_100_g: Углеводов на 100 г
+          in_1_unit_of_ingredient: 1 %{unit} весит
 
   domain:
     recipes:

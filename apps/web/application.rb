@@ -22,6 +22,7 @@ module Web
       # When you add new directories, remember to add them here.
       #
       load_paths << %w[
+        forms
         controllers
         views
         config/initializers

@@ -17,9 +17,10 @@ module Web
                     required(:id).filled(:str?)
                     optional(:unit).maybe(:str?)
                     optional(:quantity).maybe(:float?)
-                    optional(:fat_mg).maybe(:float?)
-                    optional(:carbohydrates_mg).maybe(:float?)
-                    optional(:protein_mg).maybe(:float?)
+                    optional(:fat_g).maybe(:float?)
+                    optional(:carbohydrates_g).maybe(:float?)
+                    optional(:protein_g).maybe(:float?)
+                    optional(:unit_g).maybe(:float?)
                   end
                 end
               end
@@ -27,14 +28,18 @@ module Web
 
             def call(params)
               recipe = find_recipe(params)
-              recipe_ingredients_params = params[:recipe].fetch(:recipe_ingredients, [])
-
-              update_recipe_ingredients.call(recipe_ingredients_params) if params.valid?
+              update_recipe_ingredients.call(recipe_ingredient_params(params)) if params.valid?
 
               redirect_to routes.profile_recipe_path(id: recipe.id)
             end
 
             private
+
+            def recipe_ingredient_params(params)
+              Web::Forms::Profile::Recipes::RecipeIngredients::BatchUpdate.new(
+                params[:recipe].fetch(:recipe_ingredients, [])
+              ).attributes
+            end
 
             def find_recipe(params)
               recipe_repo.find_with_ingredients_for_user(
