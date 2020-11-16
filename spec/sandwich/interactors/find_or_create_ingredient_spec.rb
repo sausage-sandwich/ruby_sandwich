@@ -10,6 +10,20 @@ RSpec.describe FindOrCreateIngredient do
     let!(:existing_ingredient) { ingredient_repo.create(title: title) }
 
     it { expect(ingredient).to eq existing_ingredient }
+
+    context 'when ingredient contains trialing spaces' do
+      let(:title) { "\t carrot \n" }
+      let!(:existing_ingredient) { ingredient_repo.create(title: 'carrot') }
+
+      it { expect(ingredient).to eq existing_ingredient }
+    end
+
+    context 'when ingredient contains letters in different cases' do
+      let(:title) { 'cArRot' }
+      let!(:existing_ingredient) { ingredient_repo.create(title: 'carrot') }
+
+      it { expect(ingredient).to eq existing_ingredient }
+    end
   end
 
   context 'when new ingredient' do
