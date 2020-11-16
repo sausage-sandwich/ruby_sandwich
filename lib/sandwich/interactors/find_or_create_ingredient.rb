@@ -8,6 +8,7 @@ class FindOrCreateIngredient
   expose :ingredient
 
   def call(title:)
+    title = title.strip.downcase
     @ingredient = ingredient_repo.find_by_title(title) || ingredient_repo.create(title: title)
   end
 
