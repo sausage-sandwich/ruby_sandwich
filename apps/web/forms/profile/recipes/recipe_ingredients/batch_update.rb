@@ -28,6 +28,8 @@ module Web
               end
 
               def to_mg(value)
+                return unless value
+
                 (value * 1000).to_i
               end
             end

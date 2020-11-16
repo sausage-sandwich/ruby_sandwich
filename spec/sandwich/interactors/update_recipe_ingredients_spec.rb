@@ -40,4 +40,24 @@ RSpec.describe UpdateRecipeIngredients do
       unit_mg: recipe_ingredient_params.fetch(:unit_mg)
     )
   end
+
+  context 'when unit weight i snot given' do
+    let(:recipe_ingredient_params) do
+      {
+        id: recipe_ingredient.id,
+        fat_mg: 3000,
+        carbohydrates_mg: 2000,
+        protein_mg: 5000
+      }
+    end
+
+    it 'updates recipe ingredients' do
+      expect(recipe_ingredients.first).to have_attributes(
+        fat_mg: recipe_ingredient_params.fetch(:fat_mg),
+        carbohydrates_mg: recipe_ingredient_params.fetch(:carbohydrates_mg),
+        protein_mg: recipe_ingredient_params.fetch(:protein_mg),
+        unit_mg: nil
+      )
+    end
+  end
 end
