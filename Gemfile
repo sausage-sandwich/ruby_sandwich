@@ -8,6 +8,7 @@ gem 'rake'
 
 gem 'bcrypt'
 gem 'dotenv', '~> 2.4'
+gem 'dry-transformer'
 gem 'i18n'
 gem 'image_processing'
 gem 'pg'

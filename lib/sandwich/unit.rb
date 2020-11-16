@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Unit
-  UNITS = %w[g kg pound ounce
-    ml l gallon quart pint cup fluid_ounce
-    tablespoon teaspoon glass handful pinch pieces].freeze
+  TRIVIAL_UNITS = %w[tablespoon teaspoon glass handful pinch pieces].freeze
+  UNITS = (TRIVIAL_UNITS + %w[g kg pound ounce
+    ml l gallon quart pint cup fluid_ounce]).freeze
 
   TO_METRIC_CONVERSION_RATE = {
     gallon: { quantity: 4546.09, unit: :ml },
@@ -32,11 +32,12 @@ class Unit
 
   ConversionError = Class.new(StandardError)
 
-  attr_reader :quantity, :unit
+  attr_reader :quantity, :unit, :conversion_rates
 
-  def initialize(quantity, unit)
+  def initialize(quantity, unit, conversion_rates = {})
     @quantity = BigDecimal(quantity)
     @unit = unit.to_sym
+    @conversion_rates = TO_GRAMS_CONVERSION_RATE.merge(conversion_rates)
   end
 
   def convert_to_metric
@@ -58,7 +59,7 @@ class Unit
   end
 
   def convert_to_grams
-    rate = TO_GRAMS_CONVERSION_RATE.fetch(unit.to_sym, nil)
+    rate = conversion_rates.fetch(unit.to_sym, nil)
     raise ConversionError, "can't convert #{unit} to grams" unless rate
 
     Unit.new(quantity * rate, :g)

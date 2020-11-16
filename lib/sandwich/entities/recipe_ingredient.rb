@@ -10,7 +10,13 @@ class RecipeIngredient < Hanami::Entity
   end
 
   def quantity_in_grams
-    Unit.new(quantity, unit).convert_to_grams.quantity
+    Unit.new(quantity, unit, conversions_mg).convert_to_grams.quantity
+  end
+
+  def conversions_mg
+    return {} unless Unit::TRIVIAL_UNITS.include?(unit)
+
+    { unit.to_sym => unit_mg }
   end
 
   private
