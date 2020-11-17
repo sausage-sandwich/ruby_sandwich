@@ -44,7 +44,8 @@ class UpdateRecipeIngredientsForRecipe
 
   def delete_old_ingredients(recipe, existing_recipe_ingredients)
     old_recipe_ingredients = recipe_ingredient_repo.for_recipe(recipe).to_a
-    for_deletion = old_recipe_ingredients.map(&:id) - existing_recipe_ingredients.map { |param| param[:id] }
+    existing_recipe_ingredients_ids = existing_recipe_ingredients.map { |param| param[:id] }
+    for_deletion = old_recipe_ingredients.map(&:id) - existing_recipe_ingredients_ids
 
     recipe_ingredient_repo.delete_ids(for_deletion)
   end
