@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Unit
-  TRIVIAL_UNITS = %w[tablespoon teaspoon glass handful pinch pieces].freeze
-  UNITS = (TRIVIAL_UNITS + %w[g kg pound ounce
-    ml l gallon quart pint cup fluid_ounce]).freeze
+  TRIVIAL_UNITS = %w[tablespoon teaspoon glass handful pinch pieces
+    ml l gallon quart pint fluid_ounce cup].freeze
+  UNITS = (TRIVIAL_UNITS + %w[g kg pound ounce]).freeze
 
   TO_METRIC_CONVERSION_RATE = {
     gallon: { quantity: 4546.09, unit: :ml },
