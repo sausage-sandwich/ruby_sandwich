@@ -12,6 +12,7 @@
       - div class: 'js-repeatable-block form-group col-md-11' do
         - div class: 'form-row' do
           - div class: 'form-group col-md-7' do
+            - number_field :id, hidden: true
             - text_field :title, class: 'form-control '
           - div class: 'form-group col-md-2' do
             - number_field :quantity, class: 'form-control', step: 'any'

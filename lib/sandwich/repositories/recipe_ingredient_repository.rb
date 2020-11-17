@@ -6,8 +6,16 @@ class RecipeIngredientRepository < Hanami::Repository
     belongs_to :ingredient
   end
 
+  def for_recipe(recipe)
+    recipe_ingredients.where(recipe_id: recipe.id).map_to(RecipeIngredient)
+  end
+
   def delete_for_recipe(recipe)
     recipe_ingredients.where(recipe_id: recipe.id).delete
+  end
+
+  def delete_ids(ids)
+    recipe_ingredients.where(id: ids).delete
   end
 
   def find_with_ingredient(id)

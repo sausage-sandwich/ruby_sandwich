@@ -22,6 +22,7 @@ module Web
               end
               required(:recipe_ingredients, :array).each do
                 schema do
+                  optional(:id).maybe(:int?)
                   required(:title).filled(:str?)
                   optional(:unit).maybe(:str?)
                   optional(:quantity).maybe(:float?)

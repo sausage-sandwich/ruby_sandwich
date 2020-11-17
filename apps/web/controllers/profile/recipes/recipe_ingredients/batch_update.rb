@@ -14,7 +14,7 @@ module Web
               required(:recipe).schema do
                 required(:recipe_ingredients, :array).each do
                   schema do
-                    required(:id).filled(:str?)
+                    required(:id).filled(:int?)
                     optional(:unit).maybe(:str?)
                     optional(:quantity).maybe(:float?)
                     optional(:fat_g).maybe(:float?)

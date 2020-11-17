@@ -8,10 +8,8 @@ class UpdateRecipe
   expose :recipe
 
   def call(recipe, recipe_params)
-    recipe_ingredients = build_ingredient_params(recipe_params)
+    update_recipe_ingredients(recipe, recipe_params.fetch(:recipe_ingredients, []))
 
-    recipe_ingredient_repo.delete_for_recipe(recipe)
-    create_recipe_ingredients(recipe, recipe_ingredients)
     image_params = build_image_params(recipe_params[:image])
 
     recipe_repo.update(
@@ -25,22 +23,36 @@ class UpdateRecipe
 
   private
 
-  def build_ingredient_params(recipe_params)
-    recipe_ingredient_params = recipe_params.fetch(:recipe_ingredients, [])
+  def update_recipe_ingredients(recipe, recipe_ingredient_params)
+    old_recipe_ingredients = recipe_ingredient_repo.for_recipe(recipe).to_a
+    existing_recipe_ingredients = recipe_ingredient_params.select { |param| param[:id] }
+    for_deletion = old_recipe_ingredients.map(&:id) - existing_recipe_ingredients.map { |param| param[:id] }
 
-    recipe_ingredient_params.map do |recipe_ingredient_param|
-      result = find_or_create_ingredient.call(title: recipe_ingredient_param.fetch(:title))
+    existing_recipe_ingredients.each do |attrs|
+      recipe_ingredient_repo.update(attrs.fetch(:id), attrs.slice(:unit, :quantity))
+    end
+    create_recipe_ingredients(recipe, build_ingredient_params(recipe_ingredient_params))
+    recipe_ingredient_repo.delete_ids(for_deletion)
+  end
 
-      if result.success?
-        recipe_ingredient_param.slice(:quantity, :unit).merge(ingredient_id: result.ingredient.id)
-      else
-        error!('could not create all ingredients')
-      end
+  def build_ingredient_params(recipe_ingredient_params)
+    recipe_ingredient_params.reject { |param| param[:id] }.map do |param|
+      param.slice(:quantity, :unit).merge(ingredient_id: ingredient_id_for(param.fetch(:title)))
+    end
+  end
+
+  def ingredient_id_for(title)
+    result = find_or_create_ingredient.call(title: title)
+
+    if result.success?
+      result.ingredient.id
+    else
+      error!('could not create all ingredients')
     end
   end
 
   def create_recipe_ingredients(recipe, recipe_ingredients)
-    recipe_ingredients.each do |recipe_ingredient|
+    recipe_ingredients.map do |recipe_ingredient|
       recipe_ingredient_repo.create(recipe_ingredient.merge(recipe_id: recipe.id))
     end
   end
