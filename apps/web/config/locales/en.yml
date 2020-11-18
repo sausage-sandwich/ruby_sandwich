@@ -18,6 +18,10 @@ ru:
     handful: handful
     pinch: pinch
 
+  views:
+    shared:
+      my_recipes: My recipes
+
   domain:
     recipes:
       ingredients:
