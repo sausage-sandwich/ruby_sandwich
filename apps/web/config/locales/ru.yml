@@ -60,6 +60,8 @@ ru:
   save: Сохранить
 
   views:
+    shared:
+      my_recipes: Мои рецепты
     recipe:
       show:
         ingredients: Ингредиенты
