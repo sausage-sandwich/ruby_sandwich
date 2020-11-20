@@ -1,7 +1,15 @@
 .row
   h1 Ingredients
 .row
-  ul.list-unstyled
+  table.table.table-sm.table-bordered.table-striped.w-75
+    tr
+      th Title
+      th Protein
+      th Fat
+      th Carbs
     - ingredients.each do |ingredient|
-      li
-        = link_to ingredient.title, Admin.routes.path(:edit_ingredient, id: ingredient.id)
+      tr
+        td = link_to ingredient.title, Admin.routes.path(:edit_ingredient, id: ingredient.id)
+        td = display_g(ingredient.protein_mg)
+        td = display_g(ingredient.fat_mg)
+        td = display_g(ingredient.carbohydrates_mg)
