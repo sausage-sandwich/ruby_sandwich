@@ -3,7 +3,7 @@
 .row
   .col-md-12
     = form_for :recipe, routes.profile_recipe_ingredients_path(recipe_id: recipe.id), values: { recipe: recipe } do
-      - table class: 'table-sm table-borderless table-striped w-100'
+      - table class: 'table w-100'
         - tr
           - th
             - I18n.t('title', scope: 'views.recipes.recipe_ingredients.batch_edit')
@@ -17,7 +17,7 @@
           - tr
             - td
               - number_field :id, hidden: true
-              = label recipe_ingredient.ingredient.title
+              = label ingredient_title(recipe_ingredient)
               - if Unit::TRIVIAL_UNITS.include?(recipe_ingredient.unit)
                 = label "(#{I18n.t('in_1_unit_of_ingredient', unit: I18n.t(recipe_ingredient.unit, scope: 'units', count: 1), scope: 'views.recipes.recipe_ingredients.batch_edit')}"
                 - number_field :unit_g, value: display_g(recipe_ingredient.unit_mg), step: 'any', class: 'text-right small-number-field'

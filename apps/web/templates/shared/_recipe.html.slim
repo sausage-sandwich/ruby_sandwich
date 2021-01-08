@@ -32,7 +32,7 @@
               - recipe.recipe_ingredients.each do |recipe_ingredient|
                 tr
                   td.text-capitalize
-                    = recipe_ingredient.ingredient.title
+                    = ingredient_title(recipe_ingredient)
                   td.text-right
                     span.visible
                       = display_metric_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)

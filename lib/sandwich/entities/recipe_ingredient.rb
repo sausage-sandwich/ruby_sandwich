@@ -6,7 +6,7 @@ class RecipeIngredient < Hanami::Entity
   end
 
   def nutrition_facts
-    build_nutrition_facts || ingredient.nutrition_facts
+    build_nutrition_facts || ingredient&.nutrition_facts
   end
 
   def quantity_in_grams

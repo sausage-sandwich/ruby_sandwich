@@ -23,23 +23,19 @@ class UpdateRecipeIngredientsForRecipe
 
   def create_new_ingredients(recipe, recipe_ingredient_params)
     recipe_ingredient_params.reject { |param| param[:id] }.map do |param|
-      attrs = param.slice(:quantity, :unit).
+      attrs = param.slice(:title, :quantity, :unit).
         merge(
-          ingredient_id: ingredient_id_for(param.fetch(:title)),
-          recipe_id: recipe.id
+          recipe_id: recipe.id,
+          **ingredient_id_for(param.fetch(:title))
         )
       recipe_ingredient_repo.create(attrs)
     end
   end
 
   def ingredient_id_for(title)
-    result = find_or_create_ingredient.call(title: title)
+    ingredient = ingredient_repo.find_by_title(title)
 
-    if result.success?
-      result.ingredient.id
-    else
-      error!('could not create all ingredients')
-    end
+    ingredient ? { ingredient_id: ingredient.id } : {}
   end
 
   def delete_old_ingredients(recipe, existing_recipe_ingredients)
@@ -50,8 +46,8 @@ class UpdateRecipeIngredientsForRecipe
     recipe_ingredient_repo.delete_ids(for_deletion)
   end
 
-  def find_or_create_ingredient
-    @find_or_create_ingredient ||= FindOrCreateIngredient.new
+  def ingredient_repo
+    @ingredient_repo ||= IngredientRepository.new
   end
 
   def recipe_ingredient_repo
