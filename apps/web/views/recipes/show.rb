@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../shared/display_unit'
+require_relative '../shared/ingredients'
 
 module Web
   module Views
@@ -8,6 +9,7 @@ module Web
       class Show
         include Web::View
         include Web::Views::Shared::DisplayUnit
+        include Web::Views::Shared::Ingredients
 
         # NOTE: find build-in function for this
         def text_with_newlines(text)

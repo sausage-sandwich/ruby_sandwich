@@ -41,7 +41,7 @@ RSpec.describe UpdateRecipe do
       quantity: 2,
       unit: 'kg'
     )
-    expect(recipe.recipe_ingredients.first.ingredient).to have_attributes(title: 'potato')
+    expect(recipe.recipe_ingredients.first).to have_attributes(title: 'potato')
   end
 
   context 'when recipe ingredients contain unchanged ones' do
@@ -57,15 +57,15 @@ RSpec.describe UpdateRecipe do
     end
     let(:new_recipe_ingredient_attrs) do
       recipe.recipe_ingredients.map do |ri|
-        { ingredient: ri.ingredient.title, quantity: ri.quantity, unit: ri.unit }
+        { title: ri.title, quantity: ri.quantity, unit: ri.unit, ingredient_id: ri.ingredient_id }
       end
     end
 
     it 'updates existing ingredients and adds new ones' do
       expect(recipe.recipe_ingredients.count).to eq 2
       expect(new_recipe_ingredient_attrs).to contain_exactly(
-        { ingredient: 'carrot', quantity: BigDecimal(12), unit: 'g' },
-        { ingredient: 'potato', quantity: BigDecimal(2), unit: 'kg' }
+        { title: nil, quantity: BigDecimal(12), unit: 'g', ingredient_id: ingredient.id },
+        { title: 'potato', quantity: BigDecimal(2), unit: 'kg', ingredient_id: nil }
       )
     end
   end
