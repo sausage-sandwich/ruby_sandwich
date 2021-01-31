@@ -3,7 +3,7 @@
   min-height: 100vh;
 }
 
-.container {
+.with-bottom {
   padding-bottom: 120px;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .bg-main {
-  background-color: #619936;
+  background-color: #E58F8A;
 }
 
 .text-white {
@@ -65,13 +65,13 @@
 }
 
 .nutrition-facts {
-  border: 2px solid #619936;
+  border: 2px solid #E58F8A;
   border-radius: 5px;
   line-height: 2;
 }
 
 .border-main {
-  border-color: #619936!important;
+  border-color: #E58F8A!important;
 }
 
 .text-h5 {
