@@ -7,6 +7,7 @@ html lang='en'
     meta content='' name='description'
     meta content='' name='author'
     = stylesheet 'bootstrap.min.css'
+    = javascript 'jquery-3.0.0.min.js'
     = javascript 'bootstrap.min.js'
     = stylesheet 'application'
     = javascript 'application'
@@ -20,25 +21,27 @@ html lang='en'
           .navbar-header
             a href=Web.routes.path(:recipes)
               = image('icon.svg', alt: 'Бутерброд с колбасой', width: 220)
-          .collapse.navbar-collapse
+          button.navbar-toggler aria-controls="navbarToggler" aria-expanded="false" data-target="#navbarToggler" data-toggle="collapse" type="button"
+            = image('menu.svg', class: 'icon')
+          .collapse.navbar-collapse#navbarToggler
             ul.navbar-nav.mr-auto
               li.nav-item
-                = link_to 'Генератор салатов', routes.salad_path, class: 'nav-link btn'
+                = link_to 'Генератор салатов', routes.salad_path, class: 'nav-link btn-link'
               - if defined?(current_user) && current_user # TODO: inline 'signed_in?', move to a view helper
                 li.nav-item
-                  = link_to 'Записать рецепт', routes.new_profile_recipe_path, class: 'nav-link btn'
+                  = link_to 'Записать рецепт', routes.new_profile_recipe_path, class: 'nav-link btn-link'
                 li.nav-item
-                  = link_to 'Списки покупок', routes.profile_shopping_lists_path, class: 'nav-link btn'
+                  = link_to 'Списки покупок', routes.profile_shopping_lists_path, class: 'nav-link btn-link'
             ul.navbar-nav
               - if defined?(current_user) && current_user # TODO: inline 'signed_in?', move to a view helper
                 li.nav-item
-                  = link_to I18n.t('views.shared.my_recipes'), routes.profile_path, class: 'nav-link'
+                  = link_to I18n.t('views.shared.my_recipes'), routes.profile_path, class: 'nav-link btn-link'
                 li.nav-item
                   = form_for :session, Web.routes.path(:session), method: 'delete' do
                     - submit 'Выйти', class: 'nav-link btn-link'
               - else
                 li.nav-item
-                  = link_to 'Зарегистрироваться', Web.routes.path(:new_user), class: 'nav-link btn'
+                  = link_to 'Зарегистрироваться', Web.routes.path(:new_user), class: 'nav-link btn-link'
                 li.nav-item
                   = link_to 'Войти', Web.routes.path(:new_session), class: 'nav-link btn-link'
       .container.with-bottom

@@ -83,3 +83,9 @@
 .small-number-field {
   width: 100px;
 }
+
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: #FFFFFF;
+}
