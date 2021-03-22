@@ -3,6 +3,7 @@
 class RecipeIngredientRepository < Hanami::Repository
   associations do
     belongs_to :recipe
+    belongs_to :ingredient_group
     belongs_to :ingredient
   end
 
