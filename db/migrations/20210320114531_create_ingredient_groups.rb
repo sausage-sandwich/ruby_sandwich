@@ -4,7 +4,7 @@ Hanami::Model.migration do
   change do
     create_table :ingredient_groups do
       primary_key :id
-      column :title, String, null: false
+      column :title, String
       foreign_key :recipe_id, :recipes, on_delete: :cascade, null: false
 
       column :created_at, DateTime, null: false
