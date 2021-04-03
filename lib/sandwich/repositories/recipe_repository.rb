@@ -28,7 +28,8 @@ class RecipeRepository < Hanami::Repository
   def find_with_ingredient_groups(id)
     aggregate(
       :user,
-      :recipe_ingredients,
+      :ingredients,
+      recipe_ingredients: :ingredient,
       ingredient_groups: {
         recipe_ingredients: :ingredient
       }
