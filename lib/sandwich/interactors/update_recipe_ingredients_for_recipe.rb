@@ -52,7 +52,7 @@ class UpdateRecipeIngredientsForRecipe
 
   def find_or_create_ingredients_group(recipe)
     ingredient_group_repo.by_recipe(recipe.id).first ||
-      ingredient_group_repo.create(title: recipe.title, recipe_id: recipe.id)
+      ingredient_group_repo.create(recipe_id: recipe.id)
   end
 
   def ingredient_group_repo
