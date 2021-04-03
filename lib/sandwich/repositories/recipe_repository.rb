@@ -2,7 +2,7 @@
 
 class RecipeRepository < Hanami::Repository
   associations do
-    has_many :recipe_ingredients
+    has_many :recipe_ingredients, through: :ingredient_groups
     has_many :ingredients, through: :recipe_ingredients
     has_many :ingredient_groups
   end
@@ -26,7 +26,7 @@ class RecipeRepository < Hanami::Repository
 
   def find_with_ingredient_groups(id)
     aggregate(
-      :ingredients,
+      :recipe_ingredients,
       ingredient_groups: {
         recipe_ingredients: :ingredient
       }

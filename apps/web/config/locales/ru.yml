@@ -65,6 +65,7 @@ ru:
     recipe:
       show:
         ingredients: Ингредиенты
+        instructions: Инструкции
         to_imperial: В имперскую систему
         to_metric: В метрическую систему
       form:
