@@ -2,13 +2,16 @@
 
 class Recipe < Hanami::Entity
   def nutrition_facts
+    return unless nutrition_facts_per_quantity
+
     (nutrition_facts_per_quantity / quantity_in_grams) * 100
   end
 
   def nutrition_facts_per_quantity
-    recipe_ingredients.
-      map(&:nutrition_facts_per_quantity).
-      inject(&:+)
+    all_nutrition_facts_per_quantity = recipe_ingredients.map(&:nutrition_facts_per_quantity)
+    return if all_nutrition_facts_per_quantity.include?(nil)
+
+    all_nutrition_facts_per_quantity.inject(&:+)
   end
 
   def quantity_in_grams

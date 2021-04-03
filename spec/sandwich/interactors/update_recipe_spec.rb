@@ -14,7 +14,8 @@ RSpec.describe UpdateRecipe do
   let(:recipe_ingredient_params) { [recipe_ingredient_param] }
   let(:recipe_ingredient_param) { { title: 'potato', quantity: 2, unit: 'kg' } }
   let(:recipe_repo) { RecipeRepository.new }
-  let(:existing_recipe) do
+  let(:existing_recipe) { Factory::Recipe.call }
+
     recipe_repo.create_with_recipe_ingredients(
       title: 'title1',
       body: 'body1',

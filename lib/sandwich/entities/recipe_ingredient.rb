@@ -2,6 +2,8 @@
 
 class RecipeIngredient < Hanami::Entity
   def nutrition_facts_per_quantity
+    return unless nutrition_facts
+
     nutrition_facts * (quantity_in_grams / 100)
   end
 
