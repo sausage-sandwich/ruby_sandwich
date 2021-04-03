@@ -7,6 +7,10 @@ class RecipeIngredientRepository < Hanami::Repository
     belongs_to :ingredient
   end
 
+  def update_ingredient_group_for_recipe(recipe_id, ingredient_group_id)
+    recipe_ingredients.where(recipe_id: recipe_id).update(ingredient_group_id: ingredient_group_id)
+  end
+
   def for_recipe(recipe)
     recipe_ingredients.where(recipe_id: recipe.id).map_to(RecipeIngredient)
   end
