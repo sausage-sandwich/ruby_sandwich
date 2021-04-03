@@ -17,7 +17,7 @@ module Web
         def call(params)
           repo = RecipeRepository.new
 
-          recipe = repo.find_with_ingredients(params[:id])
+          recipe = repo.find_with_ingredient_groups(params[:id])
           @recipe = ScaledRecipe.new(recipe, params.dig(:recipe, :scale) || 1)
         end
       end

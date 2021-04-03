@@ -4,7 +4,7 @@
   .col-md-6
     .row
       .col-md-12
-        h2.text-capitalize
+        h1.text-capitalize
           = recipe.title
           - if can_edit_recipe?(recipe, current_user)
             = link_to I18n.t('edit'), routes.edit_profile_recipe_path(recipe.id), class: 'btn btn-link btn-sm small text-muted'
@@ -16,7 +16,7 @@
       .col-md-12.js-visibility-toggle
         .row
           .col-md-8
-            span.text-h5
+            span.text-h3
               = I18n.t('views.recipe.show.ingredients')
             | &nbsp;
             span.text-muted.small.js-visibility-toggle-button.js-metric-toggler data-alternative-text="(#{I18n.t('views.recipe.show.to_metric')})"
@@ -29,16 +29,19 @@
         .row
           .col-md-12
             table.table-sm.table-striped.table-borderless.w-100
-              - recipe.recipe_ingredients.each do |recipe_ingredient|
-                tr
-                  td.text-capitalize
-                    = ingredient_title(recipe_ingredient)
-                  td.text-right
-                    span.visible
-                      = display_metric_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
-                    span.invisible
-                      = display_imperial_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
+              - recipe.ingredient_groups.each do |ingredient_group|
+                - if ingredient_group.title
+                  h5 = ingredient_group.title
+                - ingredient_group.recipe_ingredients.each do |recipe_ingredient|
+                  tr
+                    td.text-capitalize
+                      = ingredient_title(recipe_ingredient)
+                    td.text-right
+                      span.visible
+                        = display_metric_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
+                      span.invisible
+                        = display_imperial_quantity(recipe_ingredient.quantity, recipe_ingredient.unit)
 
   .col-md-12
-    h5 Instructions
+    h3 = I18n.t('views.recipe.show.instructions')
     = text_with_newlines(recipe.body)

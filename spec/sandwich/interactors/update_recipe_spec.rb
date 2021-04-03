@@ -14,23 +14,8 @@ RSpec.describe UpdateRecipe do
   let(:recipe_ingredient_params) { [recipe_ingredient_param] }
   let(:recipe_ingredient_param) { { title: 'potato', quantity: 2, unit: 'kg' } }
   let(:recipe_repo) { RecipeRepository.new }
-  let(:existing_recipe) do
-    recipe_repo.create_with_recipe_ingredients(
-      title: 'title1',
-      body: 'body1',
-      recipe_ingredients: [
-        {
-          ingredient_id: ingredient.id,
-          quantity: 1,
-          unit: 'kg'
-        }
-      ]
-    )
-  end
-  let(:ingredient) do
-    ingredient_repo = IngredientRepository.new
-    ingredient_repo.create(title: 'carrot')
-  end
+  let(:existing_recipe) { Factory::Recipes.call }
+  let(:ingredient) { existing_recipe.ingredients.first }
 
   it 'updates recipe' do
     expect(recipe).to have_attributes(

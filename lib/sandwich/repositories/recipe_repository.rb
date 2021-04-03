@@ -2,7 +2,8 @@
 
 class RecipeRepository < Hanami::Repository
   associations do
-    has_many :recipe_ingredients
+    belongs_to :user
+    has_many :recipe_ingredients, through: :ingredient_groups
     has_many :ingredients, through: :recipe_ingredients
     has_many :ingredient_groups
   end
@@ -26,7 +27,9 @@ class RecipeRepository < Hanami::Repository
 
   def find_with_ingredient_groups(id)
     aggregate(
+      :user,
       :ingredients,
+      recipe_ingredients: :ingredient,
       ingredient_groups: {
         recipe_ingredients: :ingredient
       }
@@ -42,9 +45,5 @@ class RecipeRepository < Hanami::Repository
 
   def all_with_ingredients
     aggregate(recipe_ingredients: :ingredient).map_to(Recipe)
-  end
-
-  def create_with_recipe_ingredients(attrs)
-    assoc(:recipe_ingredients).create(attrs)
   end
 end

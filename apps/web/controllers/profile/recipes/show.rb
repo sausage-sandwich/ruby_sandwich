@@ -11,7 +11,7 @@ module Web
           expose :recipe, :shopping_lists
 
           def call(params)
-            @recipe = recipe_repo.find_with_ingredients(params[:id])
+            @recipe = recipe_repo.find_with_ingredient_groups(params[:id])
 
             shopping_lists = shopping_lists_repo.by_user(user_id: current_user.id)
             @shopping_lists = shopping_lists.to_a.each_with_object({}) do |list, memo|

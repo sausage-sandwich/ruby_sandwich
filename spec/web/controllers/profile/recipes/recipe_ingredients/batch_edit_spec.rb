@@ -10,8 +10,7 @@ RSpec.describe Web::Controllers::Profile::Recipes::RecipeIngredients::BatchEdit,
     include_context 'signed in user'
 
     let(:params) { { recipe_id: recipe.id } }
-    let(:recipe) { recipe_repo.create(title: 'title', body: 'body', user_id: user.id) }
-    let(:recipe_repo) { RecipeRepository.new }
+    let(:recipe) { Factory::Recipes.call }
 
     it 'is successful' do
       expect(subject[0]).to eq 200
