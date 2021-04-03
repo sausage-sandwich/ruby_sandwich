@@ -41,7 +41,7 @@ RSpec.describe UpdateRecipeIngredients do
     )
   end
 
-  context 'when unit weight i snot given' do
+  context 'when unit weight is not given' do
     let(:recipe_ingredient_params) do
       {
         id: recipe_ingredient.id,

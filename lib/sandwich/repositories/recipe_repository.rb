@@ -4,6 +4,7 @@ class RecipeRepository < Hanami::Repository
   associations do
     has_many :recipe_ingredients
     has_many :ingredients, through: :recipe_ingredients
+    has_many :ingredient_groups
   end
 
   def by_user(user_id)
@@ -21,6 +22,15 @@ class RecipeRepository < Hanami::Repository
 
   def find_with_ingredients(id)
     aggregate(:ingredients, recipe_ingredients: :ingredient).where(id: id).map_to(Recipe).one
+  end
+
+  def find_with_ingredient_groups(id)
+    aggregate(
+      :ingredients,
+      ingredient_groups: {
+        recipe_ingredients: :ingredient
+      }
+    ).where(id: id).map_to(Recipe).one
   end
 
   def find_with_ingredients_for_user(recipe_id, user_id)
